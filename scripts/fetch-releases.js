@@ -118,6 +118,8 @@ async function main() {
         release.assets.forEach((asset) => {
           if (asset.name.match(/^AtomVM-esp32p4-/))
             supportedBoards.add("ESP32-P4");
+          else if (asset.name.match(/^AtomVM-esp32c5-/))
+            supportedBoards.add("ESP32-C5");
           else if (asset.name.match(/^AtomVM-esp32c6-/))
             supportedBoards.add("ESP32-C6");
           else if (asset.name.match(/^AtomVM-esp32c3-/))

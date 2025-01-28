@@ -32,6 +32,7 @@ layout: default
     <small datetime="{{ latest_stable_version.published_at }}">{{ latest_stable_version.published_at | date: "%-d %b %Y" }} - <a href="{{ latest_stable_version.html_url }}">Changelog</a></small>
     {% assign install_item = latest_stable_version %} 
     {% include install_card.html %}
+    {% include install_pico_card.html %}
   </section>
 
   {% if latest_prerelease_version.published_at >
@@ -47,9 +48,6 @@ layout: default
     <div class="view-all">
       <a href="all_versions" class="button">View all versions</a>
     </div>
-    <div class="popup-container">
-      <a class="button" id="popupButton">Open Demo</a>
-    </div>
   </section>
 </div>
 
@@ -57,26 +55,19 @@ layout: default
 <div id="popupOverlay" class="popup-overlay">
   <div class="popup-content theme-aware">
     <span class="close-popup">&times;</span>
-    <h2>Demo Content</h2>
+    <h2>Flash Raspberry Pi Pico
+    </h2>
     <div class="demo-content">
-      <h3>AtomVM Demo</h3>
-      <p>This is a sample demo of AtomVM running on ESP32.</p>
-      <pre class="theme-aware"><code>
-% Example AtomVM code
--module(blink).
--export([start/0]).
-
-start() ->
-    gpio:set_direction(2, output),
-    blink_loop().
-
-blink_loop() ->
-    gpio:digital_write(2, 1),
-    timer:sleep(1000),
-    gpio:digital_write(2, 0),
-    timer:sleep(1000),
-    blink_loop().
-      </code></pre>
+      <h3>1. Enter (UF2) DFU Mode</h3>
+      <p>Trigger DFU mode manually by pressing and holding BOOTSEL button while plugging in USB cable.</p>
+      <h3>2. Ensure device DFU mode drive is mounted</h3>
+      <p>The drive may have a different name depending on your device hardware and its bootloader.</p>
+      <img src="assets/images/rpi_pico.png" alt="Raspberry Pi Pico" />
+      <h3>3. Download or copy UF2 file to DFU drive</h3>
+      <p>Download or copy UF2 file to the DFU drive. The device will automatically reboot when the transfer completes and will start with the new firmware.</p>
+      <button style="padding: 8px 28px; font-size: 16px; font-weight: 700">
+        Download UF2 - Pico
+      </button>
     </div>
   </div>
 </div>
@@ -90,12 +81,17 @@ blink_loop() ->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const popup = document.getElementById('popupOverlay');
-    const btn = document.getElementById('popupButton');
+    const picoBtn = document.getElementById('picoButton');
+    const picoWBtn = document.getElementById('picoWButton');
     const closeBtn = document.querySelector('.close-popup');
 
-    btn.onclick = function() {
+    picoBtn.onclick = function() {
       popup.style.display = "block";
-      // Add event listener for escape key when popup opens
+      document.addEventListener('keydown', handleEscapeKey);
+    }
+
+    picoWBtn.onclick = function() {
+      popup.style.display = "block";
       document.addEventListener('keydown', handleEscapeKey);
     }
 
