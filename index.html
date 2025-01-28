@@ -84,15 +84,29 @@ layout: default
     const picoBtn = document.getElementById('picoButton');
     const picoWBtn = document.getElementById('picoWButton');
     const closeBtn = document.querySelector('.close-popup');
+    const downloadBtn = document.querySelector('.demo-content button');
 
     picoBtn.onclick = function() {
       popup.style.display = "block";
+      downloadBtn.textContent = "Download UF2 - Pico";
+      downloadBtn.dataset.uf2Link = this.dataset.uf2Link;
       document.addEventListener('keydown', handleEscapeKey);
     }
 
     picoWBtn.onclick = function() {
       popup.style.display = "block";
+      downloadBtn.textContent = "Download UF2 - Pico W";
+      downloadBtn.dataset.uf2Link = this.dataset.uf2Link;
       document.addEventListener('keydown', handleEscapeKey);
+    }
+
+    downloadBtn.onclick = function() {
+      const link = document.createElement('a');
+      link.href = this.dataset.uf2Link;
+      link.download = '';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
 
     function handleEscapeKey(event) {
