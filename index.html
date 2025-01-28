@@ -3,41 +3,53 @@ layout: default
 ---
 
 <div class="container">
-    <h1>AtomVM Esp32 Firmware Flasher</h1>
-    
-    <p class="lead"> - Marketing buzz, from a dist future - </p>
+  <h1>AtomVM Esp32 Firmware Flasher</h1>
 
-    <section class="latest-release">
-        <h2>Latest Release</h2>
-        {% assign latest_version = site.data.versions.versions | first %}
-        {% assign release_json = latest_version.version | prepend: 'assets/' | append: '/release.json' %}
-        {% assign elixir_json = latest_version.version | prepend: 'assets/' | append: '/release-elixir.json' %}
+  <p class="lead">- Marketing buzz, from a dist future -</p>
 
-        <div class="card" style="width: 100%">
+  {% assign versions = site.data.versions.versions %} 
+  {% assign latest_stable_version = nil %} 
+  {% assign latest_prerelease_version = nil %} 
+  {% for version in versions %} 
+    {% unless latest_stable_version %}
+      {% if version.version contains 'alpha' or version.version contains 'beta' or version.version contains 'rc' %}
+        {% unless latest_prerelease_version %} 
+          {% assign latest_prerelease_version = version %}
+        {% endunless %}
+        {% continue %}
+      {% endif %} 
+      {% assign latest_stable_version = version %} 
+    {% endunless %} 
+  {% endfor %} 
+  {% unless latest_stable_version %} 
+    {% assign latest_stable_version = versions | first %} 
+  {% endunless %} 
+  {% assign release_json = latest_stable_version.version | prepend: 'assets/' | append: '/release.json' %}
+  {% assign elixir_json = latest_stable_version.version | prepend: 'assets/' | append: '/release-elixir.json' %}
 
-            <div class="release-header">
+  <section class="latest-release">
+    <h2>Latest Stable Release</h2>
+    {% assign install_item = latest_stable_version %} 
+    {% include install_card.html %}
+  </section>
 
-                <h3><a href="{{ latest_version.html_url }}">AtomVM {{ latest_version.version }}</a></h3>
-            
-                <small datetime="{{ latest_version.published_at }}">{{ latest_version.published_at | date: "%Y-%m-%d" }}</small>
-                        
-            </div>
-            <div class="release-text">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae ex quidem maiores repellat esse dolor veniam sequi officia voluptates explicabo, sit velit perferendis impedit magnam aspernatur quam excepturi accusamus quae.
-            </div>
-
-        <div class="install-section">
-            {% assign item = latest_version %}
-            {% assign has_elixir = latest_version.has_elixir %}
-            {% include install_buttons.html %}
-        </div>
-    </div>
-    </section>
-
+  {% if latest_prerelease_version.published_at >
+  latest_stable_version.published_at %}
+  <section class="latest-release">
+    <h2>Latest Pre-Release</h2>
+    {% assign install_item = latest_prerelease_version %}
+    {% include install_card.html %}
+  </section>
+  {% endif %}
+  <section class="latest-release">
     <div class="view-all">
-        <a href="all_versions" class="button">View all versions</a>
+      <a href="all_versions" class="button">View all versions</a>
     </div>
+  </section>
 </div>
-<script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+<script
+  type="module"
+  src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"
+></script>
 
-<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="assets/css/styles.css" />

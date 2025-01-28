@@ -3,27 +3,28 @@ layout: default
 ---
 
 <div class="container">
-    <h1>AtomVM Firmware</h1>
-    
-    <p class="lead">AtomVM firmware images for the ESP32 family of devices.</p>
+  <h1>AtomVM Firmware</h1>
 
-    <section class="latest-release">
-        <h2>Latest Release</h2>
+  <p class="lead">AtomVM firmware images for the ESP32 family of devices.</p>
+
+  <section class="latest-release">
+    <h2>Latest Release</h2>
     {% for version in site.data.versions.versions %}
-    {% assign release_json = version.version | prepend: 'assets/' | append: '/release.json' %}
-    {% assign elixir_json = version.version | prepend: 'assets/' | append: '/release-elixir.json' %}
-
-    <h3>
+      {% assign release_json =  version.version | prepend: 'assets/' | append: '/release.json' %} 
+      {% assign elixir_json = version.version | prepend: 'assets/' | append: '/release-elixir.json' %}
+      <h3>
         <a href="{{ version.html_url }}">{{ version.version }}</a>
         <em>{{ version.published_at | date: "%Y-%m-%d" }}</em>
-    </h3>
-
-    {% assign item = version %}
-    {% assign has_elixir = version.has_elixir %}
-    {% include install_buttons.html %}
-{% endfor %}
-    </section>
+      </h3>
+      {% assign install_item = version %} 
+      {% assign has_elixir = version.has_elixir %} 
+      {% include install_buttons.html %} 
+  </section>
+  {% endfor %}
 </div>
-<script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+<script
+  type="module"
+  src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"
+></script>
 
-<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="assets/css/styles.css" />
