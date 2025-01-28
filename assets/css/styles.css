@@ -22,4 +22,14 @@
 .release-header small {
     display: block;
     color: #666;
+    margin-bottom: 15px;
+}
+
+.install-section {
+    margin-top: 20px;
+}
+
+.install-section button {
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
