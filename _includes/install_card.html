@@ -1,14 +1,11 @@
 <div class="card" style="width: 100%">
   <div class="release-header">
     <h3>
-      <a href="{{ install_item.html_url }}"
-        >AtomVM {{ install_item.version }}</a
-      >
+      ESP32
     </h3>
-    <small datetime="{{ install_item.published_at }}"
-      >{{ install_item.published_at | date: "%Y-%m-%d" }}</small
+    <small
+      >{{ install_item.supported_boards | join: ", " }}</small
     >
-  </div>
   <div class="release-text">
     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae ex
     quidem maiores repellat esse dolor veniam sequi officia voluptates
@@ -18,5 +15,6 @@
   <div class="install-section">
     {% assign has_elixir = install_item.has_elixir %} 
     {% include install_buttons.html %}
+  </div>
   </div>
 </div>

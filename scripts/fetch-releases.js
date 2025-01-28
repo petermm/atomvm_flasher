@@ -99,7 +99,7 @@ async function main() {
     console.log(`Found ${releases.length} releases`);
 
     // Filter releases by date before creating versions.json
-    const cutoffDate = new Date("2024-03-05T17:33:14Z");
+    const cutoffDate = new Date("2021-03-05T17:33:14Z");
     const recentReleases = releases.filter(
       (release) => new Date(release.published_at) > cutoffDate
     );
@@ -112,11 +112,32 @@ async function main() {
             asset.name
           )
         );
+
+        // Generate supported boards based on available assets
+        const supportedBoards = new Set();
+        release.assets.forEach((asset) => {
+          if (asset.name.match(/^AtomVM-esp32p4-/))
+            supportedBoards.add("ESP32-P4");
+          else if (asset.name.match(/^AtomVM-esp32c6-/))
+            supportedBoards.add("ESP32-C6");
+          else if (asset.name.match(/^AtomVM-esp32c3-/))
+            supportedBoards.add("ESP32-C3");
+          else if (asset.name.match(/^AtomVM-esp32c2-/))
+            supportedBoards.add("ESP32-C2");
+          else if (asset.name.match(/^AtomVM-esp32s3-/))
+            supportedBoards.add("ESP32-S3");
+          else if (asset.name.match(/^AtomVM-esp32s2-/))
+            supportedBoards.add("ESP32-S2");
+          else if (asset.name.match(/^AtomVM-esp32-/))
+            supportedBoards.add("ESP32");
+        });
+
         return {
           version: release.tag_name,
           published_at: release.published_at,
           html_url: release.html_url,
           has_elixir: hasElixirAssets,
+          supported_boards: Array.from(supportedBoards).sort(),
         };
       }),
     };

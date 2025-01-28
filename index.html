@@ -3,7 +3,7 @@ layout: default
 ---
 
 <div class="container">
-  <h1>AtomVM Esp32 Firmware Flasher</h1>
+  <h1>AtomVM Firmware Flasher</h1>
 
   <p class="lead">- Marketing buzz, from a dist future -</p>
 
@@ -28,7 +28,8 @@ layout: default
   {% assign elixir_json = latest_stable_version.version | prepend: 'assets/' | append: '/release-elixir.json' %}
 
   <section class="latest-release">
-    <h2>Latest Stable Release</h2>
+    <h2>Latest Stable Release - {{latest_stable_version.version}}</h2>
+    <small datetime="{{ latest_stable_version.published_at }}">{{ latest_stable_version.published_at | date: "%-d %b %Y" }} - <a href="{{ latest_stable_version.html_url }}">Changelog</a></small>
     {% assign install_item = latest_stable_version %} 
     {% include install_card.html %}
   </section>
@@ -36,7 +37,8 @@ layout: default
   {% if latest_prerelease_version.published_at >
   latest_stable_version.published_at %}
   <section class="latest-release">
-    <h2>Latest Pre-Release</h2>
+    <h2>Latest Pre-Release - {{latest_prerelease_version.version}}</h2>
+    <small datetime="{{ latest_prerelease_version.published_at }}">{{ latest_prerelease_version.published_at | date: "%-d %b %Y" }} - <a href="{{ latest_prerelease_version.html_url }}">Changelog</a></small>
     {% assign install_item = latest_prerelease_version %}
     {% include install_card.html %}
   </section>
@@ -53,13 +55,13 @@ layout: default
 
 <!-- Popup Overlay -->
 <div id="popupOverlay" class="popup-overlay">
-  <div class="popup-content">
+  <div class="popup-content theme-aware">
     <span class="close-popup">&times;</span>
     <h2>Demo Content</h2>
     <div class="demo-content">
       <h3>AtomVM Demo</h3>
       <p>This is a sample demo of AtomVM running on ESP32.</p>
-      <pre><code>
+      <pre class="theme-aware"><code>
 % Example AtomVM code
 -module(blink).
 -export([start/0]).
@@ -93,15 +95,29 @@ blink_loop() ->
 
     btn.onclick = function() {
       popup.style.display = "block";
+      // Add event listener for escape key when popup opens
+      document.addEventListener('keydown', handleEscapeKey);
+    }
+
+    function handleEscapeKey(event) {
+      if (event.key === 'Escape') {
+        popup.style.display = "none";
+        // Remove event listener when popup closes
+        document.removeEventListener('keydown', handleEscapeKey);
+      }
     }
 
     closeBtn.onclick = function() {
       popup.style.display = "none";
+      // Remove event listener when popup closes via button
+      document.removeEventListener('keydown', handleEscapeKey);
     }
 
     window.onclick = function(event) {
       if (event.target == popup) {
         popup.style.display = "none";
+        // Remove event listener when popup closes via outside click
+        document.removeEventListener('keydown', handleEscapeKey);
       }
     }
   });
