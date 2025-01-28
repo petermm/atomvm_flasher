@@ -27,7 +27,7 @@ layout: default
             </div>
 
         <div class="install-section">
-            {% assign item = latest_version.version %}
+            {% assign item = latest_version %}
             {% assign has_elixir = latest_version.has_elixir %}
             {% include install_buttons.html %}
         </div>

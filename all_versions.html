@@ -3,9 +3,9 @@ layout: default
 ---
 
 <div class="container">
-    <h1>Old AtomVM Firmware</h1>
+    <h1>AtomVM Firmware</h1>
     
-    <p class="lead">tomVM firmware images for the ESP32 family of devices.</p>
+    <p class="lead">AtomVM firmware images for the ESP32 family of devices.</p>
 
     <section class="latest-release">
         <h2>Latest Release</h2>
@@ -18,7 +18,7 @@ layout: default
         <em>{{ version.published_at | date: "%Y-%m-%d" }}</em>
     </h3>
 
-    {% assign item = version.version %}
+    {% assign item = version %}
     {% assign has_elixir = version.has_elixir %}
     {% include install_buttons.html %}
 {% endfor %}
