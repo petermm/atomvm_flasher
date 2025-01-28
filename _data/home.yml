@@ -1,0 +1,42 @@
+navbar_entries:
+  - title: download
+    url: https://github.com/atomvm/AtomVM/releases
+
+  - title: news
+    url: news
+
+  - title: doc
+    url: doc/main
+
+  - title: github
+    url: https://github.com/atomvm
+
+  - title: extensions
+    url: extensions
+
+  - title: forum
+    url: https://erlangforums.com/c/erlang-platforms/atomvm-forum/76
+
+  - title: contact
+    url: contact
+
+project_entries:
+  - title: Documentation
+    url: doc/master
+    desc: AtomVM documentation, from soup to nuts.  Everything you want to know about AtomVM!
+
+  - title: Sample Code
+    url: sample-code
+    desc: See some sample programs in action
+    highlight: WIP
+
+  - title: Tutorials
+    url: tutorials
+    desc: Step-by-step guides to getting started with AtomVM
+    highlight: WIP
+
+footer_entries:
+  - title: AtomVM on Github
+    url: https://github.com/atomvm/AtomVM
+  - title: AtomVMLib
+    url: https://github.com/atomvm/atomvm_lib

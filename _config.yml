@@ -1,0 +1,33 @@
+title: AtomVM Flasher
+email: webmaster@atomvm.net
+description: Download portal for AtomVM firmware images
+baseurl: "/atomvm_flasher"
+url: ""
+
+# Build settings
+theme: moonwalk
+plugins:
+  - jekyll-feed
+  - jekyll-relative-links
+
+markdown: kramdown
+
+# Exclude from processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+  - .github/
+
+## moonwalk theme configuration
+soopr: false
+theme_config:
+  appearance: dark
+  home:
+    title_projects: Getting Started
+  show_blog: false
+  show_old_projects: false
+  show_footer: false

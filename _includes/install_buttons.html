@@ -1,0 +1,18 @@
+<esp-web-install-button manifest="assets/{{ item }}/release.json">
+  <button slot="activate" style="padding: 8px 28px; font-size: 16px; font-weight: 700;">
+    Install AtomVM
+  </button>
+  <i slot="unsupported">
+    The Web Flasher is not available because your browser does not support Web
+    Serial. Open this page in Google Chrome or Microsoft Edge instead<span class="not-supported-i hidden">
+      (but not on your iOS device)</span>.
+  </i>
+</esp-web-install-button>
+{% if has_elixir %}
+<esp-web-install-button manifest="assets/{{ item }}/release-elixir.json">
+  <button slot="activate" style="padding: 8px 28px; font-size: 16px; font-weight: 700;">
+    Install Elixir AtomVM
+  </button>
+  <i slot="unsupported"></i>
+</esp-web-install-button>
+{% endif %}
