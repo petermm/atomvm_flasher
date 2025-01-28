@@ -221,7 +221,7 @@ async function main() {
               : "UNKNOWN",
             parts: [
               {
-                path: `assets/${release.tag_name}/binaries/${asset.name}`,
+                path: `binaries/${asset.name}`,
                 offset: asset.name.match(/^AtomVM-esp32p4-/)
                   ? 8192
                   : asset.name.match(/^AtomVM-esp32(?:-|s2-)/)
