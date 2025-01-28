@@ -1,0 +1,40 @@
+{
+  "versions": [
+    {
+      "version": "v0.6.5",
+      "published_at": "2024-10-15T00:37:40Z",
+      "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.5",
+      "has_elixir": true
+    },
+    {
+      "version": "v0.6.4",
+      "published_at": "2024-08-18T08:49:19Z",
+      "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.4",
+      "has_elixir": false
+    },
+    {
+      "version": "v0.6.3",
+      "published_at": "2024-07-20T21:36:14Z",
+      "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.3",
+      "has_elixir": false
+    },
+    {
+      "version": "v0.6.2",
+      "published_at": "2024-05-26T14:34:15Z",
+      "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.2",
+      "has_elixir": false
+    },
+    {
+      "version": "v0.6.1",
+      "published_at": "2024-04-20T16:11:54Z",
+      "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.1",
+      "has_elixir": false
+    },
+    {
+      "version": "v0.6.0",
+      "published_at": "2024-03-05T17:33:15Z",
+      "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.0",
+      "has_elixir": false
+    }
+  ]
+}
