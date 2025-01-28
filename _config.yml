@@ -1,7 +1,7 @@
 title: AtomVM Flasher
 email: webmaster@atomvm.net
 description: Download portal for AtomVM firmware images
-baseurl: "/atomvm_flasher"
+baseurl: ""
 url: ""
 
 # Build settings
