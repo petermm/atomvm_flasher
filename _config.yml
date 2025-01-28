@@ -8,7 +8,6 @@ url: ""
 theme: moonwalk
 plugins:
   - jekyll-feed
-  - jekyll-relative-links
 
 markdown: kramdown
 
