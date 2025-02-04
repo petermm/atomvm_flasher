@@ -198,6 +198,7 @@ case GitHubArtifacts.get_workflow_artifacts(owner, repo, workflow_name, token) d
       IO.puts("No artifacts found")
     else
       output_dir = Path.join(["assets", "branch", branch["head_branch"]])
+      File.mkdir_p!(output_dir)
       last_download_file = Path.join(output_dir, "last_download")
 
       release_data = GitHubArtifacts.create_release_data(branch, artifacts, false)
