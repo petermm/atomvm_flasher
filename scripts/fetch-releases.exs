@@ -193,6 +193,7 @@ defmodule AtomVMReleasesFetcher do
         String.match?(asset["name"], ~r/^AtomVM-esp32c2-/) -> MapSet.put(acc, "ESP32-C2")
         String.match?(asset["name"], ~r/^AtomVM-esp32s3-/) -> MapSet.put(acc, "ESP32-S3")
         String.match?(asset["name"], ~r/^AtomVM-esp32s2-/) -> MapSet.put(acc, "ESP32-S2")
+        String.match?(asset["name"], ~r/^AtomVM-esp32h2-/) -> MapSet.put(acc, "ESP32-H2")
         String.match?(asset["name"], ~r/^AtomVM-esp32-/) -> MapSet.put(acc, "ESP32")
         true -> acc
       end
@@ -229,6 +230,7 @@ defmodule AtomVMReleasesFetcher do
       String.match?(name, ~r/^atomvm-esp32c2-/i) -> "ESP32-C2"
       String.match?(name, ~r/^atomvm-esp32s3-/i) -> "ESP32-S3"
       String.match?(name, ~r/^atomvm-esp32s2-/i) -> "ESP32-S2"
+      String.match?(name, ~r/^atomvm-esp32h2-/i) -> "ESP32-H2"
       String.match?(name, ~r/^atomvm-esp32-/i) -> "ESP32"
       true -> "UNKNOWN"
     end
