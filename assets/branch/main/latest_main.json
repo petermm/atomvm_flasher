@@ -5,7 +5,7 @@
       "parts": [
         {
           "offset": 0,
-          "path": "atomvm-esp32c2-image.img"
+          "path": "atomvm-esp32c2.img"
         }
       ]
     },
@@ -14,7 +14,7 @@
       "parts": [
         {
           "offset": 0,
-          "path": "atomvm-esp32c3-image.img"
+          "path": "atomvm-esp32c3.img"
         }
       ]
     },
@@ -23,7 +23,7 @@
       "parts": [
         {
           "offset": 4096,
-          "path": "atomvm-esp32s2-image.img"
+          "path": "atomvm-esp32s2.img"
         }
       ]
     },
@@ -32,7 +32,7 @@
       "parts": [
         {
           "offset": 0,
-          "path": "atomvm-esp32s3-image.img"
+          "path": "atomvm-esp32s3.img"
         }
       ]
     },
@@ -41,7 +41,7 @@
       "parts": [
         {
           "offset": 4096,
-          "path": "atomvm-esp32-image.img"
+          "path": "atomvm-esp32.img"
         }
       ]
     },
@@ -50,16 +50,16 @@
       "parts": [
         {
           "offset": 0,
-          "path": "atomvm-esp32c6-image.img"
+          "path": "atomvm-esp32c6.img"
         }
       ]
     },
     {
-      "chipFamily": "UNKNOWN",
+      "chipFamily": "ESP32-H2",
       "parts": [
         {
           "offset": 0,
-          "path": "atomvm-esp32h2-image.img"
+          "path": "atomvm-esp32h2.img"
         }
       ]
     },
@@ -68,7 +68,7 @@
       "parts": [
         {
           "offset": 8192,
-          "path": "atomvm-esp32p4-image.img"
+          "path": "atomvm-esp32p4.img"
         }
       ]
     }

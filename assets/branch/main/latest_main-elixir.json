@@ -5,7 +5,7 @@
       "parts": [
         {
           "offset": 4096,
-          "path": "atomvm-esp32-elixir-image.img"
+          "path": "atomvm-esp32-elixir.img"
         }
       ]
     },
@@ -14,7 +14,7 @@
       "parts": [
         {
           "offset": 0,
-          "path": "atomvm-esp32c2-elixir-image.img"
+          "path": "atomvm-esp32c2-elixir.img"
         }
       ]
     },
@@ -23,7 +23,7 @@
       "parts": [
         {
           "offset": 0,
-          "path": "atomvm-esp32c3-elixir-image.img"
+          "path": "atomvm-esp32c3-elixir.img"
         }
       ]
     },
@@ -32,7 +32,7 @@
       "parts": [
         {
           "offset": 4096,
-          "path": "atomvm-esp32s2-elixir-image.img"
+          "path": "atomvm-esp32s2-elixir.img"
         }
       ]
     },
@@ -41,7 +41,7 @@
       "parts": [
         {
           "offset": 0,
-          "path": "atomvm-esp32s3-elixir-image.img"
+          "path": "atomvm-esp32s3-elixir.img"
         }
       ]
     },
@@ -50,16 +50,16 @@
       "parts": [
         {
           "offset": 0,
-          "path": "atomvm-esp32c6-elixir-image.img"
+          "path": "atomvm-esp32c6-elixir.img"
         }
       ]
     },
     {
-      "chipFamily": "UNKNOWN",
+      "chipFamily": "ESP32-H2",
       "parts": [
         {
           "offset": 0,
-          "path": "atomvm-esp32h2-elixir-image.img"
+          "path": "atomvm-esp32h2-elixir.img"
         }
       ]
     },
@@ -68,7 +68,7 @@
       "parts": [
         {
           "offset": 8192,
-          "path": "atomvm-esp32p4-elixir-image.img"
+          "path": "atomvm-esp32p4-elixir.img"
         }
       ]
     }
