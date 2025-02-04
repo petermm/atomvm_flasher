@@ -5,7 +5,7 @@
       "parts": [
         {
           "offset": 4096,
-          "path": "branch/main/atomvm-esp32-elixir-image.img"
+          "path": "atomvm-esp32-elixir-image.img"
         }
       ]
     },
@@ -14,7 +14,7 @@
       "parts": [
         {
           "offset": 0,
-          "path": "branch/main/atomvm-esp32c2-elixir-image.img"
+          "path": "atomvm-esp32c2-elixir-image.img"
         }
       ]
     },
@@ -23,7 +23,7 @@
       "parts": [
         {
           "offset": 0,
-          "path": "branch/main/atomvm-esp32c3-elixir-image.img"
+          "path": "atomvm-esp32c3-elixir-image.img"
         }
       ]
     },
@@ -32,7 +32,7 @@
       "parts": [
         {
           "offset": 4096,
-          "path": "branch/main/atomvm-esp32s2-elixir-image.img"
+          "path": "atomvm-esp32s2-elixir-image.img"
         }
       ]
     },
@@ -41,7 +41,7 @@
       "parts": [
         {
           "offset": 0,
-          "path": "branch/main/atomvm-esp32s3-elixir-image.img"
+          "path": "atomvm-esp32s3-elixir-image.img"
         }
       ]
     },
@@ -50,7 +50,7 @@
       "parts": [
         {
           "offset": 0,
-          "path": "branch/main/atomvm-esp32c6-elixir-image.img"
+          "path": "atomvm-esp32c6-elixir-image.img"
         }
       ]
     },
@@ -59,7 +59,7 @@
       "parts": [
         {
           "offset": 0,
-          "path": "branch/main/atomvm-esp32h2-elixir-image.img"
+          "path": "atomvm-esp32h2-elixir-image.img"
         }
       ]
     },
@@ -68,7 +68,7 @@
       "parts": [
         {
           "offset": 8192,
-          "path": "branch/main/atomvm-esp32p4-elixir-image.img"
+          "path": "atomvm-esp32p4-elixir-image.img"
         }
       ]
     }
