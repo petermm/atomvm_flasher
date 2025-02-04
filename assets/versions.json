@@ -1,10 +1,9 @@
 {
   "versions": [
     {
-      "version": "v0.6.5",
-      "published_at": "2024-10-15T00:37:40Z",
-      "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.5",
       "has_elixir": true,
+      "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.5",
+      "published_at": "2024-10-15T00:37:40Z",
       "supported_boards": [
         "ESP32",
         "ESP32-C2",
@@ -12,13 +11,13 @@
         "ESP32-C6",
         "ESP32-S2",
         "ESP32-S3"
-      ]
+      ],
+      "version": "v0.6.5"
     },
     {
-      "version": "v0.6.4",
-      "published_at": "2024-08-18T08:49:19Z",
+      "has_elixir": false,
       "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.4",
-      "has_elixir": false,
+      "published_at": "2024-08-18T08:49:19Z",
       "supported_boards": [
         "ESP32",
         "ESP32-C2",
@@ -26,13 +25,13 @@
         "ESP32-C6",
         "ESP32-S2",
         "ESP32-S3"
-      ]
+      ],
+      "version": "v0.6.4"
     },
     {
-      "version": "v0.6.3",
-      "published_at": "2024-07-20T21:36:14Z",
+      "has_elixir": false,
       "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.3",
-      "has_elixir": false,
+      "published_at": "2024-07-20T21:36:14Z",
       "supported_boards": [
         "ESP32",
         "ESP32-C2",
@@ -40,13 +39,13 @@
         "ESP32-C6",
         "ESP32-S2",
         "ESP32-S3"
-      ]
+      ],
+      "version": "v0.6.3"
     },
     {
-      "version": "v0.6.2",
-      "published_at": "2024-05-26T14:34:15Z",
+      "has_elixir": false,
       "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.2",
-      "has_elixir": false,
+      "published_at": "2024-05-26T14:34:15Z",
       "supported_boards": [
         "ESP32",
         "ESP32-C2",
@@ -54,110 +53,111 @@
         "ESP32-C6",
         "ESP32-S2",
         "ESP32-S3"
-      ]
+      ],
+      "version": "v0.6.2"
     },
     {
-      "version": "v0.6.1",
-      "published_at": "2024-04-20T16:11:54Z",
+      "has_elixir": false,
       "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.1",
-      "has_elixir": false,
+      "published_at": "2024-04-20T16:11:54Z",
       "supported_boards": [
         "ESP32",
         "ESP32-C3",
         "ESP32-C6",
         "ESP32-S2",
         "ESP32-S3"
-      ]
+      ],
+      "version": "v0.6.1"
     },
     {
-      "version": "v0.6.0",
-      "published_at": "2024-03-05T17:33:15Z",
+      "has_elixir": false,
       "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.0",
-      "has_elixir": false,
+      "published_at": "2024-03-05T17:33:15Z",
       "supported_boards": [
         "ESP32",
         "ESP32-C3",
         "ESP32-C6",
         "ESP32-S2",
         "ESP32-S3"
-      ]
+      ],
+      "version": "v0.6.0"
     },
     {
-      "version": "v0.6.0-rc.0",
-      "published_at": "2024-03-03T22:19:51Z",
+      "has_elixir": false,
       "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.0-rc.0",
-      "has_elixir": false,
+      "published_at": "2024-03-03T22:19:51Z",
       "supported_boards": [
         "ESP32",
         "ESP32-C3",
         "ESP32-C6",
         "ESP32-S2",
         "ESP32-S3"
-      ]
+      ],
+      "version": "v0.6.0-rc.0"
     },
     {
-      "version": "v0.6.0-beta.1",
-      "published_at": "2024-02-28T17:41:33Z",
-      "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.0-beta.1",
       "has_elixir": false,
+      "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.0-beta.1",
+      "published_at": "2024-02-28T17:41:33Z",
       "supported_boards": [
         "ESP32",
         "ESP32-C3",
         "ESP32-C6",
         "ESP32-S2"
-      ]
+      ],
+      "version": "v0.6.0-beta.1"
     },
     {
-      "version": "v0.6.0-beta.0",
-      "published_at": "2024-02-08T18:39:08Z",
+      "has_elixir": false,
       "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.0-beta.0",
-      "has_elixir": false,
+      "published_at": "2024-02-08T18:39:08Z",
       "supported_boards": [
         "ESP32",
         "ESP32-C3",
         "ESP32-C6",
         "ESP32-S2",
         "ESP32-S3"
-      ]
+      ],
+      "version": "v0.6.0-beta.0"
     },
     {
-      "version": "v0.6.0-alpha.2",
-      "published_at": "2023-12-10T23:20:22Z",
+      "has_elixir": false,
       "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.0-alpha.2",
-      "has_elixir": false,
+      "published_at": "2023-12-10T23:20:22Z",
       "supported_boards": [
         "ESP32",
         "ESP32-C3",
         "ESP32-C6",
         "ESP32-S2",
         "ESP32-S3"
-      ]
+      ],
+      "version": "v0.6.0-alpha.2"
     },
     {
-      "version": "v0.6.0-alpha.1",
-      "published_at": "2023-10-09T11:51:56Z",
-      "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.0-alpha.1",
       "has_elixir": false,
+      "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.0-alpha.1",
+      "published_at": "2023-10-09T11:51:56Z",
       "supported_boards": [
         "ESP32",
         "ESP32-C3",
         "ESP32-S2",
         "ESP32-S3"
-      ]
+      ],
+      "version": "v0.6.0-alpha.1"
     },
     {
-      "version": "v0.6.0-alpha.0",
-      "published_at": "2023-08-13T16:22:26Z",
+      "has_elixir": false,
       "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.0-alpha.0",
-      "has_elixir": false,
-      "supported_boards": []
+      "published_at": "2023-08-13T16:22:26Z",
+      "supported_boards": [],
+      "version": "v0.6.0-alpha.0"
     },
     {
-      "version": "v0.5.0",
-      "published_at": "2022-03-22T22:58:15Z",
-      "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.5.0",
       "has_elixir": false,
-      "supported_boards": []
+      "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.5.0",
+      "published_at": "2022-03-22T22:58:15Z",
+      "supported_boards": [],
+      "version": "v0.5.0"
     }
   ]
 }

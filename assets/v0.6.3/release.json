@@ -1,16 +1,11 @@
 {
-  "name": "AtomVM",
-  "version": "v0.6.3",
-  "published_at": "2024-07-20T21:36:14Z",
-  "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.3",
-  "new_install_improv_wait_time": 0,
   "builds": [
     {
       "chipFamily": "ESP32",
       "parts": [
         {
-          "path": "binaries/AtomVM-esp32-v0.6.3.img",
-          "offset": 4096
+          "offset": 4096,
+          "path": "binaries/AtomVM-esp32-v0.6.3.img"
         }
       ]
     },
@@ -18,8 +13,8 @@
       "chipFamily": "ESP32-C2",
       "parts": [
         {
-          "path": "binaries/AtomVM-esp32c2-v0.6.3.img",
-          "offset": 0
+          "offset": 0,
+          "path": "binaries/AtomVM-esp32c2-v0.6.3.img"
         }
       ]
     },
@@ -27,8 +22,8 @@
       "chipFamily": "ESP32-C3",
       "parts": [
         {
-          "path": "binaries/AtomVM-esp32c3-v0.6.3.img",
-          "offset": 0
+          "offset": 0,
+          "path": "binaries/AtomVM-esp32c3-v0.6.3.img"
         }
       ]
     },
@@ -36,8 +31,8 @@
       "chipFamily": "ESP32-C6",
       "parts": [
         {
-          "path": "binaries/AtomVM-esp32c6-v0.6.3.img",
-          "offset": 0
+          "offset": 0,
+          "path": "binaries/AtomVM-esp32c6-v0.6.3.img"
         }
       ]
     },
@@ -45,8 +40,8 @@
       "chipFamily": "ESP32-S2",
       "parts": [
         {
-          "path": "binaries/AtomVM-esp32s2-v0.6.3.img",
-          "offset": 4096
+          "offset": 4096,
+          "path": "binaries/AtomVM-esp32s2-v0.6.3.img"
         }
       ]
     },
@@ -54,10 +49,15 @@
       "chipFamily": "ESP32-S3",
       "parts": [
         {
-          "path": "binaries/AtomVM-esp32s3-v0.6.3.img",
-          "offset": 0
+          "offset": 0,
+          "path": "binaries/AtomVM-esp32s3-v0.6.3.img"
         }
       ]
     }
-  ]
+  ],
+  "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.3",
+  "name": "AtomVM",
+  "new_install_improv_wait_time": 0,
+  "published_at": "2024-07-20T21:36:14Z",
+  "version": "v0.6.3"
 }
