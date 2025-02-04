@@ -153,7 +153,7 @@ defmodule GitHubArtifacts do
             "chipFamily" => AtomVMReleasesFetcher.get_chip_family(asset["name"]),
             "parts" => [
               %{
-                "path" => "branch/main/#{asset["name"]}.img",
+                "path" => "#{asset["name"]}.img",
                 "offset" => AtomVMReleasesFetcher.get_offset(asset["name"])
               }
             ]
