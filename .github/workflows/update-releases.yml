@@ -21,6 +21,12 @@ jobs:
         with:
           node-version: "18"
 
+      - name: Setup Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: "27"
+          elixir-version: "1.18.2"
+
       - name: Install dependencies
         run: npm install
 
@@ -28,6 +34,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/fetch-releases.js
+
+      - name: Fetch latest main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: elixir scripts/fetch-artifacts.exs atomvm atomvm "esp32-mkimage"
 
       - name: Commit and push changes
         run: |

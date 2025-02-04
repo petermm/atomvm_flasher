@@ -221,24 +221,24 @@ defmodule AtomVMReleasesFetcher do
     }
   end
 
-  defp get_chip_family(name) do
+  def get_chip_family(name) do
     cond do
-      String.match?(name, ~r/^AtomVM-esp32p4-/) -> "ESP32-P4"
-      String.match?(name, ~r/^AtomVM-esp32c6-/) -> "ESP32-C6"
-      String.match?(name, ~r/^AtomVM-esp32c3-/) -> "ESP32-C3"
-      String.match?(name, ~r/^AtomVM-esp32c2-/) -> "ESP32-C2"
-      String.match?(name, ~r/^AtomVM-esp32s3-/) -> "ESP32-S3"
-      String.match?(name, ~r/^AtomVM-esp32s2-/) -> "ESP32-S2"
-      String.match?(name, ~r/^AtomVM-esp32-/) -> "ESP32"
+      String.match?(name, ~r/^atomvm-esp32p4-/i) -> "ESP32-P4"
+      String.match?(name, ~r/^atomvm-esp32c6-/i) -> "ESP32-C6"
+      String.match?(name, ~r/^atomvm-esp32c3-/i) -> "ESP32-C3"
+      String.match?(name, ~r/^atomvm-esp32c2-/i) -> "ESP32-C2"
+      String.match?(name, ~r/^atomvm-esp32s3-/i) -> "ESP32-S3"
+      String.match?(name, ~r/^atomvm-esp32s2-/i) -> "ESP32-S2"
+      String.match?(name, ~r/^atomvm-esp32-/i) -> "ESP32"
       true -> "UNKNOWN"
     end
   end
 
-  defp get_offset(name) do
+  def get_offset(name) do
     cond do
-      String.match?(name, ~r/^AtomVM-esp32p4-/) -> 8192
-      String.match?(name, ~r/^AtomVM-esp32-/) -> 4096
-      String.match?(name, ~r/^AtomVM-esp32s2-/) -> 4096
+      String.match?(name, ~r/^atomvm-esp32p4-/i) -> 8192
+      String.match?(name, ~r/^atomvm-esp32-/i) -> 4096
+      String.match?(name, ~r/^atomvm-esp32s2-/i) -> 4096
       true -> 0
     end
   end
