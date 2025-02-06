@@ -3,7 +3,7 @@ layout: default
 ---
 
 <div class="container">
-  <h1>AtomVM Firmware Flasher</h1>
+  <img src="assets/images/AtomVM-logo.png" alt="AtomVM Firmware Flasher" class="logo">
 
   <p class="lead">- Marketing buzz, from a dist future -</p>
 
@@ -33,6 +33,8 @@ layout: default
     {% assign install_item = latest_stable_version %} 
     {% include install_card.html %}
     {% include install_pico_card.html %}
+    {% include install_stm32_card.html %}
+    
   </section>
 
   {% if latest_prerelease_version.published_at >

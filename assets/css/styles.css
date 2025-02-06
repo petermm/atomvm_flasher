@@ -93,3 +93,8 @@
   display: block;
   margin-bottom: 1rem;  /* Add space between the date and the content below */
 }
+.logo {
+  max-width: 70vw;
+  height: auto;
+  display: block;
+}
