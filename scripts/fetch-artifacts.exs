@@ -194,6 +194,19 @@ end
   end
 
 branches = String.split(repo_branch, ",")
+branches_dir = Path.join(["assets", "branch"])
+
+# Clean up old branch directories
+if File.exists?(branches_dir) do
+  File.ls!(branches_dir)
+  |> Enum.filter(&File.dir?(Path.join(branches_dir, &1)))
+  |> Enum.each(fn dir ->
+    if dir not in branches do
+      IO.puts("Removing old branch directory: #{dir}")
+      File.rm_rf!(Path.join(branches_dir, dir))
+    end
+  end)
+end
 
 Enum.each(branches, fn branch_name ->
   case GitHubArtifacts.get_workflow_artifacts(owner, repo, branch_name, workflow_name, token) do
