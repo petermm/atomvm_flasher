@@ -11,7 +11,7 @@ Code.require_file("scripts/fetch-releases.exs")
 defmodule GitHubArtifacts do
   @base_url "https://api.github.com"
 
-  def get_workflow_artifacts(owner, repo, workflow_name, token) do
+  def get_workflow_artifacts(owner, repo, repo_branch, workflow_name, token) do
     req_client =
       Req.new(
         base_url: @base_url,
@@ -23,7 +23,8 @@ defmodule GitHubArtifacts do
       )
 
     with {:ok, workflow_id} <- get_workflow_id(req_client, owner, repo, workflow_name),
-         {:ok, latest_run} <- get_latest_workflow_run(req_client, owner, repo, workflow_id) do
+         {:ok, latest_run} <-
+           get_latest_workflow_run(req_client, owner, repo, repo_branch, workflow_id) do
       case get_run_artifacts(req_client, owner, repo, latest_run["id"]) do
         {:ok, artifacts} ->
           IO.inspect(latest_run)
@@ -101,10 +102,10 @@ defmodule GitHubArtifacts do
     end
   end
 
-  defp get_latest_workflow_run(req_client, owner, repo, workflow_id) do
+  defp get_latest_workflow_run(req_client, owner, repo, repo_branch, workflow_id) do
     case Req.get(req_client,
            url: "/repos/#{owner}/#{repo}/actions/workflows/#{workflow_id}/runs",
-           params: [branch: "main", per_page: 1]
+           params: [branch: repo_branch, per_page: 1]
          ) do
       {:ok, %{status: 200, body: %{"workflow_runs" => []}}} ->
         {:error, "No workflow runs found"}
@@ -182,60 +183,64 @@ case System.cmd("which", ["unzip"]) do
 end
 
 # Get command line arguments or use defaults
-{owner, repo, workflow_name} =
+{owner, repo, repo_branch, workflow_name} =
   case System.argv() do
-    [o, r, w] ->
-      {o, r, w}
+    [o, r, b, w] ->
+      {o, r, b, w}
 
     _ ->
       IO.puts("Usage: ./script.exs owner repo workflow_name")
       System.halt(1)
   end
 
-case GitHubArtifacts.get_workflow_artifacts(owner, repo, workflow_name, token) do
-  {:ok, artifacts, branch} ->
-    if Enum.empty?(artifacts) do
-      IO.puts("No artifacts found")
-    else
-      output_dir = Path.join(["assets", "branch", branch["head_branch"]])
-      File.mkdir_p!(output_dir)
-      last_download_file = Path.join(output_dir, "last_download")
+branches = String.split(repo_branch, ",")
 
-      release_data = GitHubArtifacts.create_release_data(branch, artifacts, false)
-      json_file = Path.join(output_dir, "latest_#{branch["head_branch"]}.json")
-      File.write!(json_file, Jason.encode!(release_data, pretty: true))
-
-      release_data_elixir = GitHubArtifacts.create_release_data(branch, artifacts)
-      json_file_elixir = Path.join(output_dir, "latest_#{branch["head_branch"]}-elixir.json")
-      File.write!(json_file_elixir, Jason.encode!(release_data_elixir, pretty: true))
-
-      # Check if this is a new run by comparing with last_download file
-      is_new_run =
-        case File.read(last_download_file) do
-          {:ok, last_branch} -> String.trim(last_branch) != branch["head_sha"]
-          {:error, _} -> true
-        end
-
-      if is_new_run do
-        IO.puts("\nProcessing #{length(artifacts)} artifacts to #{output_dir}")
-        File.mkdir_p!(output_dir)
-        File.write!(last_download_file, branch["head_sha"])
-
-        Enum.each(artifacts, fn artifact ->
-          IO.puts("\nArtifact: #{artifact["name"]}")
-          IO.puts("Size: #{artifact["size_in_bytes"]} bytes")
-
-          case GitHubArtifacts.download_and_extract_artifact(artifact, token, output_dir) do
-            {:ok, path} -> IO.puts("Successfully extracted to: #{path}")
-            {:error, reason} -> IO.puts("Failed: #{inspect(reason)}")
-          end
-        end)
+Enum.each(branches, fn branch_name ->
+  case GitHubArtifacts.get_workflow_artifacts(owner, repo, branch_name, workflow_name, token) do
+    {:ok, artifacts, branch} ->
+      if Enum.empty?(artifacts) do
+        IO.puts("No artifacts found")
       else
-        IO.puts("Skipping download: branch #{branch["head_branch"]} already processed")
-      end
-    end
+        output_dir = Path.join(["assets", "branch", branch["head_branch"]])
+        File.mkdir_p!(output_dir)
+        last_download_file = Path.join(output_dir, "last_download")
 
-  {:error, reason} ->
-    IO.puts("Error: #{inspect(reason)}")
-    System.halt(1)
-end
+        release_data = GitHubArtifacts.create_release_data(branch, artifacts, false)
+        json_file = Path.join(output_dir, "latest_#{branch["head_branch"]}.json")
+        File.write!(json_file, Jason.encode!(release_data, pretty: true))
+
+        release_data_elixir = GitHubArtifacts.create_release_data(branch, artifacts)
+        json_file_elixir = Path.join(output_dir, "latest_#{branch["head_branch"]}-elixir.json")
+        File.write!(json_file_elixir, Jason.encode!(release_data_elixir, pretty: true))
+
+        # Check if this is a new run by comparing with last_download file
+        is_new_run =
+          case File.read(last_download_file) do
+            {:ok, last_branch} -> String.trim(last_branch) != branch["head_sha"]
+            {:error, _} -> true
+          end
+
+        if is_new_run do
+          IO.puts("\nProcessing #{length(artifacts)} artifacts to #{output_dir}")
+          File.mkdir_p!(output_dir)
+          File.write!(last_download_file, branch["head_sha"])
+
+          Enum.each(artifacts, fn artifact ->
+            IO.puts("\nArtifact: #{artifact["name"]}")
+            IO.puts("Size: #{artifact["size_in_bytes"]} bytes")
+
+            case GitHubArtifacts.download_and_extract_artifact(artifact, token, output_dir) do
+              {:ok, path} -> IO.puts("Successfully extracted to: #{path}")
+              {:error, reason} -> IO.puts("Failed: #{inspect(reason)}")
+            end
+          end)
+        else
+          IO.puts("Skipping download: branch #{branch["head_branch"]} already processed")
+        end
+      end
+
+    {:error, reason} ->
+      IO.puts("Error: #{inspect(reason)}")
+      System.halt(1)
+  end
+end)
