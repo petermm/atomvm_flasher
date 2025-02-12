@@ -38,7 +38,7 @@ jobs:
       - name: Fetch latest main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: elixir scripts/fetch-artifacts.exs atomvm atomvm "esp32-mkimage"
+        run: elixir scripts/fetch-artifacts.exs atomvm atomvm main,release-0.6 "esp32-mkimage"
 
       - name: Commit and push changes
         run: |
