@@ -55,15 +55,6 @@
       ]
     },
     {
-      "chipFamily": "ESP32-P4",
-      "parts": [
-        {
-          "offset": 8192,
-          "path": "atomvm-esp32p4.img"
-        }
-      ]
-    },
-    {
       "chipFamily": "ESP32-H2",
       "parts": [
         {
@@ -71,10 +62,19 @@
           "path": "atomvm-esp32h2.img"
         }
       ]
+    },
+    {
+      "chipFamily": "ESP32-P4",
+      "parts": [
+        {
+          "offset": 8192,
+          "path": "atomvm-esp32p4.img"
+        }
+      ]
     }
   ],
   "name": "AtomVM-esp32-mkimage",
   "new_install_improv_wait_time": 0,
-  "published_at": "2025-02-14T14:57:53Z",
-  "version": "652d60efa700b8987ea2d19ee54717dc4ce9262c"
+  "published_at": "2025-02-14T22:54:58Z",
+  "version": "2c82f477cf316686d81a456d81452899ff51bdcf"
 }
