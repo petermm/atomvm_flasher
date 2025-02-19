@@ -19,20 +19,20 @@
       ]
     },
     {
-      "chipFamily": "ESP32-S3",
-      "parts": [
-        {
-          "offset": 0,
-          "path": "atomvm-esp32s3.img"
-        }
-      ]
-    },
-    {
       "chipFamily": "ESP32-S2",
       "parts": [
         {
           "offset": 4096,
           "path": "atomvm-esp32s2.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "atomvm-esp32s3.img"
         }
       ]
     },
@@ -75,6 +75,6 @@
   ],
   "name": "AtomVM-esp32-mkimage",
   "new_install_improv_wait_time": 0,
-  "published_at": "2025-02-17T16:33:56Z",
-  "version": "7caa5663675a4cbe38fbf8ac45cc0f4e9b58f71d"
+  "published_at": "2025-02-18T23:30:57Z",
+  "version": "c9051f15e208873e57ff7e0b1d856158625b2d07"
 }
