@@ -7,43 +7,78 @@ layout: default
 
   <p class="lead">AtomVM firmware images for the ESP32 family of devices.</p>
 
-
   <section class="latest-release">
     <h2>Latest main branch builds:</h2>
-    These might be unstable. Use at your own risk. <br>
-  <esp-web-install-button manifest="{{ site.baseurl }}/assets/branch/main/latest_main-elixir.json">
-  <button
-    slot="activate"
-    style="padding: 8px 28px; font-size: 16px; font-weight: 700"
-  >
-    Install Erlang & Elixir AtomVM from MAIN
-  </button>
-  <i slot="unsupported">The Web Flasher is not available because your browser does not support Web
-    Serial.<br />Use Google Chrome or Microsoft Edge instead</i>
-</esp-web-install-button>
-<esp-web-install-button manifest="{{ site.baseurl }}/assets/branch/main/latest_main.json">
-  <button
-    slot="activate"
-    style="padding: 8px 28px; font-size: 16px; font-weight: 700"
-  >
-    Install Erlang AtomVM from MAIN
-  </button>
-  <i slot="unsupported"></i>
-</esp-web-install-button>
+    These might be unstable. Use at your own risk. <br />
+    <esp-web-install-button
+      manifest="{{ site.baseurl }}/assets/branch/main/latest_main-elixir.json"
+    >
+      <button
+        slot="activate"
+        style="padding: 8px 28px; font-size: 16px; font-weight: 700"
+      >
+        Install Erlang & Elixir AtomVM from MAIN
+      </button>
+      <i slot="unsupported"
+        >The Web Flasher is not available because your browser does not support
+        Web Serial.<br />Use Google Chrome or Microsoft Edge instead</i
+      >
+    </esp-web-install-button>
+    <esp-web-install-button
+      manifest="{{ site.baseurl }}/assets/branch/main/latest_main.json"
+    >
+      <button
+        slot="activate"
+        style="padding: 8px 28px; font-size: 16px; font-weight: 700"
+      >
+        Install Erlang AtomVM from MAIN
+      </button>
+      <i slot="unsupported"></i>
+    </esp-web-install-button>
+  </section>
+
+  <section class="latest-release">
+    <h2>Latest release-0.6 branch builds:</h2>
+    These might be unstable. Use at your own risk. <br />
+    <esp-web-install-button
+      manifest="{{ site.baseurl }}/assets/branch/release-0.6/latest_main-elixir.json"
+    >
+      <button
+        slot="activate"
+        style="padding: 8px 28px; font-size: 16px; font-weight: 700"
+      >
+        Install Erlang & Elixir AtomVM from MAIN
+      </button>
+      <i slot="unsupported"
+        >The Web Flasher is not available because your browser does not support
+        Web Serial.<br />Use Google Chrome or Microsoft Edge instead</i
+      >
+    </esp-web-install-button>
+    <esp-web-install-button
+      manifest="{{ site.baseurl }}/assets/branch/release-0.6/latest_main.json"
+    >
+      <button
+        slot="activate"
+        style="padding: 8px 28px; font-size: 16px; font-weight: 700"
+      >
+        Install Erlang AtomVM from MAIN
+      </button>
+      <i slot="unsupported"></i>
+    </esp-web-install-button>
   </section>
 
   <section class="latest-release">
     <h2>Latest Release</h2>
-    {% for version in site.data.versions.versions %}
-      {% assign release_json =  version.version | prepend: 'assets/' | append: '/release.json' %} 
-      {% assign elixir_json = version.version | prepend: 'assets/' | append: '/release-elixir.json' %}
-      <h3>
-        <a href="{{ version.html_url }}">{{ version.version }}</a>
-        <em>{{ version.published_at | date: "%Y-%m-%d" }}</em>
-      </h3>
-      {% assign install_item = version %} 
-      {% assign has_elixir = version.has_elixir %} 
-      {% include install_buttons.html %} 
+    {% for version in site.data.versions.versions %} {% assign release_json =
+    version.version | prepend: 'assets/' | append: '/release.json' %} {% assign
+    elixir_json = version.version | prepend: 'assets/' | append:
+    '/release-elixir.json' %}
+    <h3>
+      <a href="{{ version.html_url }}">{{ version.version }}</a>
+      <em>{{ version.published_at | date: "%Y-%m-%d" }}</em>
+    </h3>
+    {% assign install_item = version %} {% assign has_elixir =
+    version.has_elixir %} {% include install_buttons.html %}
   </section>
   {% endfor %}
 </div>
