@@ -206,6 +206,7 @@ defmodule AtomVMReleasesFetcher do
       "version" => release["tag_name"],
       "published_at" => release["published_at"],
       "html_url" => release["html_url"],
+      "new_install_prompt_erase" => true,
       "new_install_improv_wait_time" => 0,
       "builds" =>
         Enum.map(assets, fn asset ->

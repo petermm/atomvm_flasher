@@ -147,6 +147,7 @@ defmodule GitHubArtifacts do
       "version" => release["head_sha"],
       "published_at" => release["updated_at"],
       # "html_url" => release["head_repository"],
+      "new_install_prompt_erase" => true,
       "new_install_improv_wait_time" => 0,
       "builds" =>
         Enum.map(assets, fn asset ->
