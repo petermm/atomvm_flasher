@@ -49,6 +49,7 @@
   "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.1",
   "name": "AtomVM",
   "new_install_improv_wait_time": 0,
+  "new_install_prompt_erase": true,
   "published_at": "2024-04-20T16:11:54Z",
   "version": "v0.6.1"
 }
