@@ -143,4 +143,8 @@ layout: default
       }
     };
   });
+
+  if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+    document.querySelector(".not-supported-i").classList.remove("hidden");
+  }
 </script>

@@ -86,5 +86,9 @@ layout: default
   type="module"
   src="https://unpkg.com/tasmota-esp-web-tools/dist/web/install-button.js?module"
 ></script>
-
+<script>
+  if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+    document.querySelector(".not-supported-i").classList.remove("hidden");
+  }
+</script>
 <link rel="stylesheet" href="assets/css/styles.css" />
