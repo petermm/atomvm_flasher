@@ -8,7 +8,11 @@
   >
     Install Erlang & Elixir AtomVM
   </button>
-  <i slot="unsupported"></i>
+  <span slot="unsupported"><button
+    style="padding: 8px 28px; font-size: 16px; font-weight: 700; opacity: 0.6;"
+  >
+  Install Erlang & Elixir AtomVM
+</button></span>
 </esp-web-install-button>
 {% endif %}
 <esp-web-install-button
@@ -21,7 +25,13 @@
     {% if has_elixir %}Install Erlang AtomVM{% else %}Install Erlang & Elixir AtomVM{% endif %}
   </button>
   <i slot="unsupported">
-    The Web Flasher is not available because your browser does not support Web
+    <button
+    slot="activate"
+    style="padding: 8px 28px; font-size: 16px; font-weight: 700; opacity: 0.6;"
+  >
+    {% if has_elixir %}Install Erlang AtomVM{% else %}Install Erlang & Elixir AtomVM{% endif %}
+  </button><br>
+    Web Flasher is not available because your browser does not support Web
     Serial.<br />Use Google Chrome or Microsoft Edge instead<span
       class="not-supported-i hidden"
     >
