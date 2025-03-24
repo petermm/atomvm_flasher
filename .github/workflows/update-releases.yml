@@ -42,9 +42,10 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --global user.name 'GitHub Action'
+          git config --global user.name 'Installer updater'
           git config --global user.email 'action@github.com'
-          git add assets/
+          git add assets/release_binaries
+          git add assets/branch_ci_binaries
           git add _data/versions.yml
           git commit -m "Update releases and assets" || exit 0
           git push
