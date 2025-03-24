@@ -8,11 +8,13 @@
   >
     Install Erlang & Elixir AtomVM
   </button>
-  <span slot="unsupported"><button
-    style="padding: 8px 28px; font-size: 16px; font-weight: 700; opacity: 0.6;"
+  <span slot="unsupported"
+    ><button
+      style="padding: 8px 28px; font-size: 16px; font-weight: 700; opacity: 0.6"
+    >
+      Install Erlang & Elixir AtomVM
+    </button></span
   >
-  Install Erlang & Elixir AtomVM
-</button></span>
 </esp-web-install-button>
 {% endif %}
 <esp-web-install-button
@@ -22,15 +24,17 @@
     slot="activate"
     style="padding: 8px 28px; font-size: 16px; font-weight: 700"
   >
-    {% if has_elixir %}Install Erlang AtomVM{% else %}Install Erlang & Elixir AtomVM{% endif %}
+    {% if has_elixir %}Install Erlang AtomVM{% else %}Install Erlang & Elixir
+    AtomVM{% endif %}
   </button>
   <i slot="unsupported">
     <button
-    slot="activate"
-    style="padding: 8px 28px; font-size: 16px; font-weight: 700; opacity: 0.6;"
-  >
-    {% if has_elixir %}Install Erlang AtomVM{% else %}Install Erlang & Elixir AtomVM{% endif %}
-  </button><br>
+      slot="activate"
+      style="padding: 8px 28px; font-size: 16px; font-weight: 700; opacity: 0.6"
+    >
+      {% if has_elixir %}Install Erlang AtomVM{% else %}Install Erlang & Elixir
+      AtomVM{% endif %}</button
+    ><br />
     Web Flasher is not available because your browser does not support Web
     Serial.<br />Use Google Chrome or Microsoft Edge instead<span
       class="not-supported-i hidden"
@@ -38,7 +42,12 @@
       (but not on your iOS device)</span
     >.<br />
     Alternatively Download and Flash the firmware manually:<br />
-    <a href="{{ install_item.html_url }}">Download {{ install_item.version }} release</a><br />
-    <a href="https://www.atomvm.net/doc/main/getting-started-guide.html#flashing-a-binary-image-to-esp32">Docs: Flashing a binary</a><br />
+    <a href="{{ install_item.html_url }}"
+      >Download {{ install_item.version }} release</a
+    ><br />
+    <a
+      href="https://www.atomvm.net/doc/main/getting-started-guide.html#flashing-a-binary-image-to-esp32"
+      >Docs: Flashing a binary</a
+    ><br />
   </i>
 </esp-web-install-button>
