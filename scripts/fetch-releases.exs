@@ -214,7 +214,7 @@ defmodule AtomVMReleasesFetcher do
             "chipFamily" => get_chip_family(asset["name"]),
             "parts" => [
               %{
-                "path" => "binaries/#{asset["name"]}",
+                "path" => "#{asset["name"]}",
                 "offset" => get_offset(asset["name"])
               }
             ]
