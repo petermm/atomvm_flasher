@@ -22,7 +22,7 @@ defmodule AtomVMReleasesFetcher do
     IO.puts("Found #{length(releases)} releases")
 
     # Filter releases by date
-    cutoff_date = "2021-03-05T17:33:14Z" |> DateTime.from_iso8601() |> elem(1)
+    cutoff_date = DateTime.from_iso8601!("2023-03-05T17:33:14Z")
 
     recent_releases =
       Enum.filter(releases, fn release ->
