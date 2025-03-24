@@ -1,0 +1,64 @@
+{
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        {
+          "offset": 4096,
+          "path": "AtomVM-esp32-elixir-v0.6.5.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C2",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "AtomVM-esp32c2-elixir-v0.6.5.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C3",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "AtomVM-esp32c3-elixir-v0.6.5.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C6",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "AtomVM-esp32c6-elixir-v0.6.5.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-S2",
+      "parts": [
+        {
+          "offset": 4096,
+          "path": "AtomVM-esp32s2-elixir-v0.6.5.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "AtomVM-esp32s3-elixir-v0.6.5.img"
+        }
+      ]
+    }
+  ],
+  "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.5",
+  "name": "AtomVM",
+  "new_install_improv_wait_time": 0,
+  "new_install_prompt_erase": true,
+  "published_at": "2024-10-15T00:37:40Z",
+  "version": "v0.6.5"
+}
