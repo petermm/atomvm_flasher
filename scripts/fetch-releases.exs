@@ -71,9 +71,7 @@ defmodule AtomVMReleasesFetcher do
 
       if length(assets) > 0 do
         tag_dir = Path.join(@config.assets_dir, release["tag_name"])
-        tag_binaries_dir = Path.join(tag_dir, "binaries")
         File.mkdir_p!(tag_dir)
-        File.mkdir_p!(tag_binaries_dir)
 
         {standard_assets, elixir_assets} =
           Enum.split_with(assets, &(!String.contains?(&1["name"], "-elixir-")))
@@ -94,7 +92,7 @@ defmodule AtomVMReleasesFetcher do
 
         # Download assets
         Enum.each(assets, fn asset ->
-          asset_path = Path.join(tag_binaries_dir, asset["name"])
+          asset_path = Path.join(tag_dir, asset["name"])
           download_asset(asset, asset_path)
         end)
       end
