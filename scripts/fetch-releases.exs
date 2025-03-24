@@ -64,7 +64,7 @@ defmodule AtomVMReleasesFetcher do
     File.write!(versions_yml_path, Ymlr.document!(versions_data))
 
     # Process each release
-    Enum.each(releases, fn release ->
+    Enum.each(recent_releases, fn release ->
       assets = Enum.filter(release["assets"], &Regex.match?(@firmware_regex, &1["name"]))
       IO.puts("Processing release #{release["tag_name"]}")
       IO.puts("Found #{length(assets)} matching firmware assets")

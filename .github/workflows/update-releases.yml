@@ -16,10 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: "18"
 
       - name: Setup Elixir
         uses: erlef/setup-beam@v1
@@ -27,8 +27,8 @@ jobs:
           otp-version: "27"
           elixir-version: "1.18.2"
 
-      - name: Install dependencies
-        run: npm install
+      # - name: Install dependencies
+      #   run: npm install
 
       # - name: Fetch releases
       #   env:
