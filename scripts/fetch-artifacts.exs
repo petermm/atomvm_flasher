@@ -195,7 +195,8 @@ end
   end
 
 branches = String.split(repo_branch, ",")
-branches_dir = Path.join(["assets", "branch"])
+branches_dir = Path.join(["assets", "branch_ci_binaries"])
+File.mkdir_p!(branches_dir)
 
 # Clean up old branch directories
 if File.exists?(branches_dir) do
@@ -215,7 +216,7 @@ Enum.each(branches, fn branch_name ->
       if Enum.empty?(artifacts) do
         IO.puts("No artifacts found")
       else
-        output_dir = Path.join(["assets", "branch", branch["head_branch"]])
+        output_dir = Path.join([branches_dir, branch["head_branch"]])
         File.mkdir_p!(output_dir)
         last_download_file = Path.join(output_dir, "last_download")
 

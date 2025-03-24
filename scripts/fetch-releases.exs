@@ -10,7 +10,7 @@ defmodule AtomVMReleasesFetcher do
   @config %{
     owner: "atomvm",
     repo: "atomvm",
-    assets_dir: "assets",
+    assets_dir: "assets/release_binaries",
     token: System.get_env("GITHUB_TOKEN") || System.get_env("GH_TOKEN")
   }
 
@@ -114,7 +114,7 @@ defmodule AtomVMReleasesFetcher do
     IO.puts("Fetching releases from atomvm/atomvm repository...")
 
     headers = [
-      {"Authorization", "token #{@config.token}"},
+      # {"Authorization", "token #{@config.token}"},
       {"Accept", "application/vnd.github.v3+json"},
       {"User-Agent", "AtomVM-Releases-Fetcher"}
     ]
@@ -167,7 +167,7 @@ defmodule AtomVMReleasesFetcher do
     )
 
     headers = [
-      {"Authorization", "token #{@config.token}"},
+      # {"Authorization", "token #{@config.token}"},
       {"Accept", "application/octet-stream"},
       {"User-Agent", "AtomVM-Releases-Fetcher"}
     ]
