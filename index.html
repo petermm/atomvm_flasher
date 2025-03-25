@@ -11,18 +11,25 @@ layout: default
 
   <p class="lead">- Marketing buzz, from a dist future -</p>
 
-  {% assign versions = site.data.versions.versions %} {% assign
-  latest_stable_version = nil %} {% assign latest_prerelease_version = nil %} {%
-  for version in versions %} {% unless latest_stable_version %} {% if
-  version.version contains 'alpha' or version.version contains 'beta' or
-  version.version contains 'rc' %} {% unless latest_prerelease_version %} {%
-  assign latest_prerelease_version = version %} {% endunless %} {% continue %}
-  {% endif %} {% assign latest_stable_version = version %} {% endunless %} {%
-  endfor %} {% unless latest_stable_version %} {% assign latest_stable_version =
-  versions | first %} {% endunless %} {% assign release_json =
-  latest_stable_version.version | prepend: 'assets/' | append: '/release.json'
-  %} {% assign elixir_json = latest_stable_version.version | prepend: 'assets/'
-  | append: '/release-elixir.json' %}
+  {% assign versions = site.data.versions.versions %}
+  {% assign latest_stable_version = nil %}
+  {% assign latest_prerelease_version = nil %}
+  {% for version in versions %}
+    {% unless latest_stable_version %}
+      {% if version.version contains 'alpha' or version.version contains 'beta' or version.version contains 'rc' %}
+        {% unless latest_prerelease_version %}
+          {% assign latest_prerelease_version = version %}
+        {% endunless %}
+        {% continue %}
+      {% endif %}
+      {% assign latest_stable_version = version %}
+    {% endunless %}
+  {% endfor %}
+  {% unless latest_stable_version %}
+    {% assign latest_stable_version = versions | first %}
+  {% endunless %}
+  {% assign release_json = latest_stable_version.version | prepend: 'assets/release_binaries' | append: '/release.json' %}
+  {% assign elixir_json = latest_stable_version.version | prepend: 'assets/release_binaries' | append: '/release-elixir.json' %}
 
   <section class="latest-release">
     <h2>Latest Stable Release - {{latest_stable_version.version}}</h2>
@@ -30,22 +37,23 @@ layout: default
       >{{ latest_stable_version.published_at | date: "%-d %b %Y" }} -
       <a href="{{ latest_stable_version.html_url }}">Changelog</a></small
     >
-    {% assign install_item = latest_stable_version %} {% include
-    install_card.html %} {% include install_pico_card.html %} {% include
-    install_stm32_card.html %}
+    {% assign install_item = latest_stable_version %}
+    {% include install_card.html %}
+    {% include install_pico_card.html %}
+    {% include install_stm32_card.html %}
   </section>
 
-  {% if latest_prerelease_version.published_at >
-  latest_stable_version.published_at %}
+  {% if latest_prerelease_version.published_at > latest_stable_version.published_at %}
   <section class="latest-release">
     <h2>Latest Pre-Release - {{latest_prerelease_version.version}}</h2>
     <small datetime="{{ latest_prerelease_version.published_at }}"
       >{{ latest_prerelease_version.published_at | date: "%-d %b %Y" }} -
       <a href="{{ latest_prerelease_version.html_url }}">Changelog</a></small
     >
-    {% assign install_item = latest_prerelease_version %} {% include
-    install_card.html %} {% include install_pico_card.html %} {% include
-      install_stm32_card.html %}
+    {% assign install_item = latest_prerelease_version %}
+    {% include install_card.html %}
+    {% include install_pico_card.html %}
+    {% include install_stm32_card.html %}
   </section>
   {% endif %}
   <section class="latest-release">
