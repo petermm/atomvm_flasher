@@ -93,12 +93,13 @@ layout: default
   </div>
 </div>
 
+
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css" />
 <script
   type="module"
-  src="https://unpkg.com/tasmota-esp-web-tools/dist/web/install-button.js?module"
+  src="{{ site.baseurl }}/assets/install_button_modules/install-button.js?module"
 ></script>
 
-<link rel="stylesheet" href="assets/css/styles.css" />
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const popup = document.getElementById("popupOverlay");

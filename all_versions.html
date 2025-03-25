@@ -2,10 +2,6 @@
 layout: default
 ---
 
-<script
-  type="module"
-  src="{{ site.baseurl }}/assets/install_button_modules/install-button.js?module"
-></script>
 <div class="container">
   <h1>AtomVM Firmware</h1>
 
@@ -73,9 +69,10 @@ layout: default
 
   <section class="latest-release">
     <h2>Latest Release</h2>
-    {% for version in site.data.versions.versions %}
-    {% assign release_json = version.version | prepend: 'assets/release_binaries/' | append: '/release.json' %}
-    {% assign elixir_json = version.version | prepend: 'assets/release_binaries/' | append: '/release-elixir.json' %}
+    {% for version in site.data.versions.versions %} {% assign release_json =
+    version.version | prepend: 'assets/release_binaries/' | append:
+    '/release.json' %} {% assign elixir_json = version.version | prepend:
+    'assets/release_binaries/' | append: '/release-elixir.json' %}
     <h3>
       <a href="{{ version.html_url }}">{{ version.version }}</a>
       <em>{{ version.published_at | date: "%Y-%m-%d" }}</em>
@@ -86,9 +83,13 @@ layout: default
   {% endfor %}
 </div>
 
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css" />
+<script
+  type="module"
+  src="{{ site.baseurl }}/assets/install_button_modules/install-button.js?module"
+></script>
 <script>
   if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
     document.querySelector(".not-supported-i").classList.remove("hidden");
   }
 </script>
-<link rel="stylesheet" href="assets/css/styles.css" />
