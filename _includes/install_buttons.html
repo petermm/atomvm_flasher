@@ -1,6 +1,6 @@
 {% if has_elixir %}
 <esp-web-install-button
-  manifest="{{ site.baseurl }}/assets/{{ install_item.version }}/release-elixir.json"
+  manifest="{{ site.baseurl }}/assets/release_binaries/{{ install_item.version }}/release-elixir.json"
 >
   <button
     slot="activate"
@@ -18,7 +18,7 @@
 </esp-web-install-button>
 {% endif %}
 <esp-web-install-button
-  manifest="{{ site.baseurl }}/assets/{{ install_item.version }}/release.json"
+  manifest="{{ site.baseurl }}/assets/release_binaries/{{ install_item.version }}/release.json"
 >
   <button
     slot="activate"
