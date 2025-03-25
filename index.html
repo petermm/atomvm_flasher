@@ -28,8 +28,8 @@ layout: default
   {% unless latest_stable_version %}
     {% assign latest_stable_version = versions | first %}
   {% endunless %}
-  {% assign release_json = latest_stable_version.version | prepend: 'assets/release_binaries' | append: '/release.json' %}
-  {% assign elixir_json = latest_stable_version.version | prepend: 'assets/release_binaries' | append: '/release-elixir.json' %}
+  {% assign release_json = latest_stable_version.version | prepend: 'assets/release_binaries/' | append: '/release.json' %}
+  {% assign elixir_json = latest_stable_version.version | prepend: 'assets/release_binaries/' | append: '/release-elixir.json' %}
 
   <section class="latest-release">
     <h2>Latest Stable Release - {{latest_stable_version.version}}</h2>

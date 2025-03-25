@@ -11,7 +11,7 @@ layout: default
     <h2>Latest main branch builds:</h2>
     These might be unstable. Use at your own risk. <br />
     <esp-web-install-button
-      manifest="{{ site.baseurl }}/assets/branch/main/latest_main-elixir.json"
+      manifest="{{ site.baseurl }}/assets/branch_ci_binaries/main/latest_main-elixir.json"
     >
       <button
         slot="activate"
@@ -25,7 +25,7 @@ layout: default
       >
     </esp-web-install-button>
     <esp-web-install-button
-      manifest="{{ site.baseurl }}/assets/branch/main/latest_main.json"
+      manifest="{{ site.baseurl }}/assets/branch_ci_binaries/main/latest_main.json"
     >
       <button
         slot="activate"
@@ -41,7 +41,7 @@ layout: default
     <h2>Latest release-0.6 branch builds:</h2>
     These might be unstable. Use at your own risk. <br />
     <esp-web-install-button
-      manifest="{{ site.baseurl }}/assets/branch/release-0.6/latest_release-0.6-elixir.json"
+      manifest="{{ site.baseurl }}/assets/branch_ci_binaries/release-0.6/latest_release-0.6-elixir.json"
     >
       <button
         slot="activate"
@@ -55,7 +55,7 @@ layout: default
       >
     </esp-web-install-button>
     <esp-web-install-button
-      manifest="{{ site.baseurl }}/assets/branch/release-0.6/latest_release-0.6.json"
+      manifest="{{ site.baseurl }}/assets/branch_ci_binaries/release-0.6/latest_release-0.6.json"
     >
       <button
         slot="activate"
@@ -69,10 +69,9 @@ layout: default
 
   <section class="latest-release">
     <h2>Latest Release</h2>
-    {% for version in site.data.versions.versions %} {% assign release_json =
-    version.version | prepend: 'assets/' | append: '/release.json' %} {% assign
-    elixir_json = version.version | prepend: 'assets/' | append:
-    '/release-elixir.json' %}
+    {% for version in site.data.versions.versions %}
+    {% assign release_json = version.version | prepend: 'assets/release_binaries/' | append: '/release.json' %}
+    {% assign elixir_json = version.version | prepend: 'assets/release_binaries/' | append: '/release-elixir.json' %}
     <h3>
       <a href="{{ version.html_url }}">{{ version.version }}</a>
       <em>{{ version.published_at | date: "%Y-%m-%d" }}</em>
