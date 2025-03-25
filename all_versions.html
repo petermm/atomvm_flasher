@@ -2,6 +2,10 @@
 layout: default
 ---
 
+<script
+  type="module"
+  src="https://unpkg.com/tasmota-esp-web-tools/dist/web/install-button.js?module"
+></script>
 <div class="container">
   <h1>AtomVM Firmware</h1>
 
@@ -81,10 +85,7 @@ layout: default
   </section>
   {% endfor %}
 </div>
-<script
-  type="module"
-  src="https://unpkg.com/tasmota-esp-web-tools/dist/web/install-button.js?module"
-></script>
+
 <script>
   if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
     document.querySelector(".not-supported-i").classList.remove("hidden");
