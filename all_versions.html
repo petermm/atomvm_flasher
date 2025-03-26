@@ -71,8 +71,8 @@ layout: default
     <h2>Latest Release</h2>
     {% for version in site.data.versions.versions %} {% assign release_json =
     version.version | prepend: 'assets/release_binaries/' | append:
-    '/release.json' %} {% assign elixir_json = version.version | prepend:
-    'assets/release_binaries/' | append: '/release-elixir.json' %}
+    '/esp32_release.json' %} {% assign elixir_json = version.version | prepend:
+    'assets/release_binaries/' | append: '/esp32_release-elixir.json' %}
     <h3>
       <a href="{{ version.html_url }}">{{ version.version }}</a>
       <em>{{ version.published_at | date: "%Y-%m-%d" }}</em>

@@ -256,7 +256,7 @@ async function main() {
         };
 
         // Write standard release JSON
-        const standardJsonPath = path.join(tagDir, "release.json");
+        const standardJsonPath = path.join(tagDir, "esp32_release.json");
         console.log(`Writing standard release data to ${standardJsonPath}`);
         fs.writeFileSync(
           standardJsonPath,
@@ -265,7 +265,7 @@ async function main() {
 
         // Write elixir release JSON if there are elixir assets
         if (elixirAssets.length > 0) {
-          const elixirJsonPath = path.join(tagDir, "release-elixir.json");
+          const elixirJsonPath = path.join(tagDir, "esp32_release-elixir.json");
           console.log(`Writing elixir release data to ${elixirJsonPath}`);
           fs.writeFileSync(
             elixirJsonPath,

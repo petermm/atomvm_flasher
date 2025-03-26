@@ -65,11 +65,11 @@ defmodule AtomVMReleasesFetcher do
 
     # Process each release
     Enum.each(recent_releases, fn release ->
-      assets = Enum.filter(release["assets"], &Regex.match?(@firmware_regex, &1["name"]))
+      esp32_assets = Enum.filter(release["assets"], &Regex.match?(@firmware_regex, &1["name"]))
       IO.puts("Processing release #{release["tag_name"]}")
       IO.puts("Found #{length(assets)} matching firmware assets")
 
-      if length(assets) > 0 do
+      if length(esp32_assets) > 0 do
         tag_dir = Path.join(@config.assets_dir, release["tag_name"])
         File.mkdir_p!(tag_dir)
 
@@ -78,20 +78,20 @@ defmodule AtomVMReleasesFetcher do
 
         # Create and write standard release data
         standard_release_data = create_release_data(release, standard_assets)
-        standard_json_path = Path.join(tag_dir, "release.json")
+        standard_json_path = Path.join(tag_dir, "esp32_release.json")
         IO.puts("Writing standard release data to #{standard_json_path}")
         File.write!(standard_json_path, Jason.encode!(standard_release_data, pretty: true))
 
         # Create and write elixir release data if available
         if length(elixir_assets) > 0 do
           elixir_release_data = create_release_data(release, elixir_assets)
-          elixir_json_path = Path.join(tag_dir, "release-elixir.json")
+          elixir_json_path = Path.join(tag_dir, "esp32_release-elixir.json")
           IO.puts("Writing elixir release data to #{elixir_json_path}")
           File.write!(elixir_json_path, Jason.encode!(elixir_release_data, pretty: true))
         end
 
         # Download assets
-        Enum.each(assets, fn asset ->
+        Enum.each(esp32_assets, fn asset ->
           asset_path = Path.join(tag_dir, asset["name"])
           download_asset(asset, asset_path)
         end)
