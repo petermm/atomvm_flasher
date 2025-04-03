@@ -14,7 +14,8 @@ defmodule AtomVMReleasesFetcher do
     token: System.get_env("GITHUB_TOKEN") || System.get_env("GH_TOKEN")
   }
 
-  @firmware_regex ~r/^AtomVM-esp32(?:[cp][2-6]|s[23])?(?:-elixir)?-v\d+\.\d+\.\d+\.img$/
+  @esp32_firmware_regex ~r/^AtomVM-esp32(?:[cp][2-6]|s[23])?(?:-elixir)?-v\d+\.\d+\.\d+\.img$/
+  @pico_firmware_regex ~r/^AtomVM-pico(?:_w)?-v\d+\.\d+\.\d+\.uf2$/
 
   def main do
     ensure_assets_dir()
@@ -63,9 +64,11 @@ defmodule AtomVMReleasesFetcher do
     IO.puts("Writing versions data to #{versions_yml_path}")
     File.write!(versions_yml_path, Ymlr.document!(versions_data))
 
-    # Process each release
+    # Process each esp32 release
     Enum.each(recent_releases, fn release ->
-      esp32_assets = Enum.filter(release["assets"], &Regex.match?(@firmware_regex, &1["name"]))
+      esp32_assets =
+        Enum.filter(release["assets"], &Regex.match?(@esp32_firmware_regex, &1["name"]))
+
       IO.puts("Processing release #{release["tag_name"]}")
       IO.puts("Found #{length(esp32_assets)} matching firmware assets")
 
