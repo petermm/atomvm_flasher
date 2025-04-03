@@ -4,6 +4,8 @@ Mix.install([
   {:req, "~> 0.4.0"},
   {:jason, "~> 1.4"},
   {:ymlr, "~> 3.0"}
+  {:ymlr, "~> 3.0"},
+  {:uf2tool, "~> 1.0"}
 ])
 
 defmodule AtomVMReleasesFetcher do
@@ -67,14 +69,14 @@ defmodule AtomVMReleasesFetcher do
     Enum.each(recent_releases, fn release ->
       esp32_assets = Enum.filter(release["assets"], &Regex.match?(@firmware_regex, &1["name"]))
       IO.puts("Processing release #{release["tag_name"]}")
-      IO.puts("Found #{length(assets)} matching firmware assets")
+      IO.puts("Found #{length(esp32_assets)} matching firmware assets")
 
       if length(esp32_assets) > 0 do
         tag_dir = Path.join(@config.assets_dir, release["tag_name"])
         File.mkdir_p!(tag_dir)
 
         {standard_assets, elixir_assets} =
-          Enum.split_with(assets, &(!String.contains?(&1["name"], "-elixir-")))
+          Enum.split_with(esp32_assets, &(!String.contains?(&1["name"], "-elixir-")))
 
         # Create and write standard release data
         standard_release_data = create_release_data(release, standard_assets)
