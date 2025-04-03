@@ -3,7 +3,8 @@
 Mix.install([
   {:req, "~> 0.4.0"},
   {:jason, "~> 1.4"},
-  {:ymlr, "~> 3.0"}
+  {:ymlr, "~> 3.0"},
+  {:uf2tool, "1.1.0"}
 ])
 
 defmodule AtomVMReleasesFetcher do
@@ -64,13 +65,34 @@ defmodule AtomVMReleasesFetcher do
     IO.puts("Writing versions data to #{versions_yml_path}")
     File.write!(versions_yml_path, Ymlr.document!(versions_data))
 
+    # Process each pico release
+    Enum.each(recent_releases, fn release ->
+      pico_assets =
+        Enum.filter(release["assets"], &Regex.match?(@pico_firmware_regex, &1["name"]))
+
+      IO.puts(
+        "#{release["tag_name"]}: Found #{length(pico_assets)} Pico matching firmware assets"
+      )
+
+      if length(pico_assets) > 0 do
+        tag_dir = Path.join(@config.assets_dir, release["tag_name"])
+        File.mkdir_p!(tag_dir)
+        # Download assets
+        Enum.each(pico_assets, fn asset ->
+          asset_path = Path.join(tag_dir, asset["name"])
+          download_asset(asset, asset_path)
+        end)
+      end
+    end)
+
     # Process each esp32 release
     Enum.each(recent_releases, fn release ->
       esp32_assets =
         Enum.filter(release["assets"], &Regex.match?(@esp32_firmware_regex, &1["name"]))
 
-      IO.puts("Processing release #{release["tag_name"]}")
-      IO.puts("Found #{length(esp32_assets)} matching firmware assets")
+      IO.puts(
+        "#{release["tag_name"]}: Found #{length(esp32_assets)} esp32 matching firmware assets"
+      )
 
       if length(esp32_assets) > 0 do
         tag_dir = Path.join(@config.assets_dir, release["tag_name"])
