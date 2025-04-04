@@ -17,6 +17,7 @@ defmodule AtomVMReleasesFetcher do
 
   @esp32_firmware_regex ~r/^AtomVM-esp32(?:[cp][2-6]|s[23])?(?:-elixir)?-v\d+\.\d+\.\d+\.img$/
   @pico_firmware_regex ~r/^AtomVM-pico(?:_w)?-v\d+\.\d+\.\d+\.uf2$/
+  @pico_atomvmlib_regex ~r/^atomvmlib-v\d+\.\d+\.\d+\.uf2$/
 
   def main do
     ensure_assets_dir()
@@ -70,6 +71,9 @@ defmodule AtomVMReleasesFetcher do
       pico_assets =
         Enum.filter(release["assets"], &Regex.match?(@pico_firmware_regex, &1["name"]))
 
+      pico_atomvmlib_assets =
+        Enum.filter(release["assets"], &Regex.match?(@pico_atomvmlib_regex, &1["name"]))
+
       IO.puts(
         "#{release["tag_name"]}: Found #{length(pico_assets)} Pico matching firmware assets"
       )
@@ -79,6 +83,16 @@ defmodule AtomVMReleasesFetcher do
         File.mkdir_p!(tag_dir)
         # Download assets
         Enum.each(pico_assets, fn asset ->
+          asset_path = Path.join(tag_dir, asset["name"])
+          download_asset(asset, asset_path)
+        end)
+      end
+
+      if length(pico_atomvmlib_assets) > 0 do
+        tag_dir = Path.join(@config.assets_dir, release["tag_name"])
+        File.mkdir_p!(tag_dir)
+        # Download assets
+        Enum.each(pico_atomvmlib_assets, fn asset ->
           asset_path = Path.join(tag_dir, asset["name"])
           download_asset(asset, asset_path)
         end)
