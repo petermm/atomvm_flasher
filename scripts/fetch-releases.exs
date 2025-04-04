@@ -78,23 +78,27 @@ defmodule AtomVMReleasesFetcher do
         "#{release["tag_name"]}: Found #{length(pico_assets)} Pico matching firmware assets"
       )
 
+      tag_dir = Path.join(@config.assets_dir, release["tag_name"])
+      File.mkdir_p!(tag_dir)
+
+      [pico_atomvmlib_asset_names] =
+        if length(pico_atomvmlib_assets) > 0 do
+          # Download assets
+          Enum.each(pico_atomvmlib_assets, fn asset ->
+            asset_path = Path.join(tag_dir, asset["name"])
+            download_asset(asset, asset_path)
+            asset_path
+          end)
+        end
+
       if length(pico_assets) > 0 do
-        tag_dir = Path.join(@config.assets_dir, release["tag_name"])
-        File.mkdir_p!(tag_dir)
         # Download assets
         Enum.each(pico_assets, fn asset ->
           asset_path = Path.join(tag_dir, asset["name"])
           download_asset(asset, asset_path)
-        end)
-      end
 
-      if length(pico_atomvmlib_assets) > 0 do
-        tag_dir = Path.join(@config.assets_dir, release["tag_name"])
-        File.mkdir_p!(tag_dir)
-        # Download assets
-        Enum.each(pico_atomvmlib_assets, fn asset ->
-          asset_path = Path.join(tag_dir, asset["name"])
-          download_asset(asset, asset_path)
+          combined_asset_path = Path.join(tag_dir, "combined_#{asset["name"]}")
+          :uf2tool.uf2join(combined_asset_path, [asset, pico_atomvmlib_asset_names])
         end)
       end
     end)
