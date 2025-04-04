@@ -98,7 +98,7 @@ defmodule AtomVMReleasesFetcher do
           download_asset(asset, asset_path)
 
           combined_asset_path = Path.join(tag_dir, "combined_#{asset["name"]}")
-          :uf2tool.uf2join(combined_asset_path, [asset, pico_atomvmlib_asset_names])
+          :uf2tool.uf2join(combined_asset_path, [asset_path, pico_atomvmlib_asset_names])
         end)
       end
     end)
