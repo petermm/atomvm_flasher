@@ -84,7 +84,7 @@ defmodule AtomVMReleasesFetcher do
       [pico_atomvmlib_asset_names] =
         if length(pico_atomvmlib_assets) > 0 do
           # Download assets
-          Enum.each(pico_atomvmlib_assets, fn asset ->
+          Enum.map(pico_atomvmlib_assets, fn asset ->
             asset_path = Path.join(tag_dir, asset["name"])
             download_asset(asset, asset_path)
             asset_path
