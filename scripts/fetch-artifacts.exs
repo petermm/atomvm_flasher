@@ -151,7 +151,9 @@ defmodule GitHubArtifacts do
       "new_install_prompt_erase" => true,
       "new_install_improv_wait_time" => 0,
       "builds" =>
-        Enum.map(assets, fn asset ->
+        assets
+        |> Enum.sort_by(fn x -> x["name"] end)
+        |> Enum.map(fn asset ->
           %{
             "chipFamily" => AtomVMReleasesFetcher.get_chip_family(asset["name"]),
             "parts" => [
