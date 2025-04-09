@@ -10,11 +10,11 @@
       ]
     },
     {
-      "chipFamily": "ESP32-S2",
+      "chipFamily": "ESP32-C2",
       "parts": [
         {
-          "offset": 4096,
-          "path": "atomvm-esp32s2-elixir.img"
+          "offset": 0,
+          "path": "atomvm-esp32c2-elixir.img"
         }
       ]
     },
@@ -28,11 +28,11 @@
       ]
     },
     {
-      "chipFamily": "ESP32-S3",
+      "chipFamily": "ESP32-C6",
       "parts": [
         {
           "offset": 0,
-          "path": "atomvm-esp32s3-elixir.img"
+          "path": "atomvm-esp32c6-elixir.img"
         }
       ]
     },
@@ -46,29 +46,29 @@
       ]
     },
     {
-      "chipFamily": "ESP32-C2",
-      "parts": [
-        {
-          "offset": 0,
-          "path": "atomvm-esp32c2-elixir.img"
-        }
-      ]
-    },
-    {
-      "chipFamily": "ESP32-C6",
-      "parts": [
-        {
-          "offset": 0,
-          "path": "atomvm-esp32c6-elixir.img"
-        }
-      ]
-    },
-    {
       "chipFamily": "ESP32-P4",
       "parts": [
         {
           "offset": 8192,
           "path": "atomvm-esp32p4-elixir.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-S2",
+      "parts": [
+        {
+          "offset": 4096,
+          "path": "atomvm-esp32s2-elixir.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "atomvm-esp32s3-elixir.img"
         }
       ]
     }
