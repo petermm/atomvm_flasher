@@ -1,0 +1,64 @@
+{
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        {
+          "offset": 4096,
+          "path": "AtomVM-esp32-v0.6.4.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C2",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "AtomVM-esp32c2-v0.6.4.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C3",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "AtomVM-esp32c3-v0.6.4.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C6",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "AtomVM-esp32c6-v0.6.4.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-S2",
+      "parts": [
+        {
+          "offset": 4096,
+          "path": "AtomVM-esp32s2-v0.6.4.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "AtomVM-esp32s3-v0.6.4.img"
+        }
+      ]
+    }
+  ],
+  "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.4",
+  "name": "AtomVM",
+  "new_install_improv_wait_time": 0,
+  "new_install_prompt_erase": true,
+  "published_at": "2024-08-18T08:49:19Z",
+  "version": "v0.6.4"
+}
