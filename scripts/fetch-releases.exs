@@ -25,7 +25,7 @@ defmodule AtomVMReleasesFetcher do
     IO.puts("Found #{length(releases)} releases")
 
     # Filter releases by date
-    {:ok, cutoff_date, _} = DateTime.from_iso8601("2024-10-14T00:37:40Z")
+    {:ok, cutoff_date, _} = DateTime.from_iso8601("2023-10-14T00:37:40Z")
 
     recent_releases =
       Enum.filter(releases, fn release ->
@@ -89,9 +89,11 @@ defmodule AtomVMReleasesFetcher do
             download_asset(asset, asset_path)
             asset_path
           end)
+        else
+          [false]
         end
 
-      if length(pico_assets) > 0 do
+      if length(pico_assets) > 0 && pico_atomvmlib_asset_names do
         # Download assets
         Enum.each(pico_assets, fn asset ->
           asset_path = Path.join(tag_dir, asset["name"])

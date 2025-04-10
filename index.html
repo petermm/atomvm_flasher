@@ -11,25 +11,19 @@ layout: default
 
   <p class="lead">- Marketing buzz, from a dist future -</p>
 
-  {% assign versions = site.data.versions.versions %}
-  {% assign latest_stable_version = nil %}
-  {% assign latest_prerelease_version = nil %}
-  {% for version in versions %}
-    {% unless latest_stable_version %}
-      {% if version.version contains 'alpha' or version.version contains 'beta' or version.version contains 'rc' %}
-        {% unless latest_prerelease_version %}
-          {% assign latest_prerelease_version = version %}
-        {% endunless %}
-        {% continue %}
-      {% endif %}
-      {% assign latest_stable_version = version %}
-    {% endunless %}
-  {% endfor %}
-  {% unless latest_stable_version %}
-    {% assign latest_stable_version = versions | first %}
-  {% endunless %}
-  {% assign release_json = latest_stable_version.version | prepend: 'assets/release_binaries/' | append: '/esp32_release.json' %}
-  {% assign elixir_json = latest_stable_version.version | prepend: 'assets/release_binaries/' | append: '/esp32_release-elixir.json' %}
+  {% assign versions = site.data.versions.versions %} {% assign
+  latest_stable_version = nil %} {% assign latest_prerelease_version = nil %} {%
+  for version in versions %} {% unless latest_stable_version %} {% if
+  version.version contains 'alpha' or version.version contains 'beta' or
+  version.version contains 'rc' %} {% unless latest_prerelease_version %} {%
+  assign latest_prerelease_version = version %} {% endunless %} {% continue %}
+  {% endif %} {% assign latest_stable_version = version %} {% endunless %} {%
+  endfor %} {% unless latest_stable_version %} {% assign latest_stable_version =
+  versions | first %} {% endunless %} {% assign release_json =
+  latest_stable_version.version | prepend: 'assets/release_binaries/' | append:
+  '/esp32_release.json' %} {% assign elixir_json = latest_stable_version.version
+  | prepend: 'assets/release_binaries/' | append: '/esp32_release-elixir.json'
+  %}
 
   <section class="latest-release">
     <h2>Latest Stable Release - {{latest_stable_version.version}}</h2>
@@ -37,23 +31,22 @@ layout: default
       >{{ latest_stable_version.published_at | date: "%-d %b %Y" }} -
       <a href="{{ latest_stable_version.html_url }}">Changelog</a></small
     >
-    {% assign install_item = latest_stable_version %}
-    {% include install_card.html %}
-    {% include install_pico_card.html %}
-    {% include install_stm32_card.html %}
+    {% assign install_item = latest_stable_version %} {% include
+    install_card.html %} {% include install_pico_card.html %} {% include
+    install_stm32_card.html %}
   </section>
 
-  {% if latest_prerelease_version.published_at > latest_stable_version.published_at %}
+  {% if latest_prerelease_version.published_at >
+  latest_stable_version.published_at %}
   <section class="latest-release">
     <h2>Latest Pre-Release - {{latest_prerelease_version.version}}</h2>
     <small datetime="{{ latest_prerelease_version.published_at }}"
       >{{ latest_prerelease_version.published_at | date: "%-d %b %Y" }} -
       <a href="{{ latest_prerelease_version.html_url }}">Changelog</a></small
     >
-    {% assign install_item = latest_prerelease_version %}
-    {% include install_card.html %}
-    {% include install_pico_card.html %}
-    {% include install_stm32_card.html %}
+    {% assign install_item = latest_prerelease_version %} {% include
+    install_card.html %} {% include install_pico_card.html %} {% include
+    install_stm32_card.html %}
   </section>
   {% endif %}
   <section class="latest-release">
@@ -63,37 +56,6 @@ layout: default
   </section>
 </div>
 
-<!-- Popup Overlay -->
-<div id="popupOverlay" class="popup-overlay">
-  <div class="popup-content theme-aware">
-    <span class="close-popup">&times;</span>
-    <h2>Flash Raspberry Pi Pico</h2>
-    <div class="demo-content">
-      <h3>1. Enter (UF2) DFU Mode</h3>
-      <p>
-        Trigger DFU mode manually by pressing and holding BOOTSEL button while
-        plugging in USB cable.
-      </p>
-      <h3>2. Ensure device DFU mode drive is mounted</h3>
-      <p>
-        The drive may have a different name depending on your device hardware
-        and its bootloader.
-      </p>
-      <img src="assets/images/rpi_pico.png" alt="Raspberry Pi Pico" />
-      <h3>3. Download and copy UF2 file to DFU drive</h3>
-      <p>
-        Download and copy UF2 file to the DFU drive. The device will
-        automatically reboot when the transfer completes and will start with the
-        new firmware.
-      </p>
-      <button style="padding: 8px 28px; font-size: 16px; font-weight: 700">
-        Download UF2 - Pico
-      </button>
-    </div>
-  </div>
-</div>
-
-
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css" />
 <script
   type="module"
@@ -101,60 +63,9 @@ layout: default
 ></script>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const popup = document.getElementById("popupOverlay");
-    const picoBtn = document.getElementById("picoButton");
-    const picoWBtn = document.getElementById("picoWButton");
-    const closeBtn = document.querySelector(".close-popup");
-    const downloadBtn = document.querySelector(".demo-content button");
-
-    picoBtn.onclick = function () {
-      popup.style.display = "block";
-      downloadBtn.textContent = "Download UF2 - Pico";
-      downloadBtn.dataset.uf2Link = this.dataset.uf2Link;
-      document.addEventListener("keydown", handleEscapeKey);
-    };
-
-    picoWBtn.onclick = function () {
-      popup.style.display = "block";
-      downloadBtn.textContent = "Download UF2 - Pico W";
-      downloadBtn.dataset.uf2Link = this.dataset.uf2Link;
-      document.addEventListener("keydown", handleEscapeKey);
-    };
-
-    downloadBtn.onclick = function () {
-      const link = document.createElement("a");
-      link.href = this.dataset.uf2Link;
-      link.download = "";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    };
-
-    function handleEscapeKey(event) {
-      if (event.key === "Escape") {
-        popup.style.display = "none";
-        // Remove event listener when popup closes
-        document.removeEventListener("keydown", handleEscapeKey);
-      }
-    }
-
-    closeBtn.onclick = function () {
-      popup.style.display = "none";
-      // Remove event listener when popup closes via button
-      document.removeEventListener("keydown", handleEscapeKey);
-    };
-
-    window.onclick = function (event) {
-      if (event.target == popup) {
-        popup.style.display = "none";
-        // Remove event listener when popup closes via outside click
-        document.removeEventListener("keydown", handleEscapeKey);
-      }
-    };
-  });
-
   if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
     document.querySelector(".not-supported-i").classList.remove("hidden");
   }
 </script>
+{% include pico_popup.html %}
+<script src="{{ site.baseurl }}/assets/js/pico_popup.js"></script>
