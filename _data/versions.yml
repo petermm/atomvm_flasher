@@ -1,6 +1,19 @@
 ---
 versions:
   - has_elixir: true
+    html_url: https://github.com/atomvm/AtomVM/releases/tag/v0.6.6
+    published_at: 2025-06-23T23:04:23Z
+    supported_boards:
+      - ESP32
+      - ESP32-C2
+      - ESP32-C3
+      - ESP32-C6
+      - ESP32-H2
+      - ESP32-P4
+      - ESP32-S2
+      - ESP32-S3
+    version: v0.6.6
+  - has_elixir: true
     html_url: https://github.com/atomvm/AtomVM/releases/tag/v0.6.5
     published_at: 2024-10-15T00:37:40Z
     supported_boards:
