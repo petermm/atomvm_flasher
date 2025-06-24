@@ -32,8 +32,9 @@ layout: default
       <a href="{{ latest_stable_version.html_url }}">Changelog</a></small
     >
     {% assign install_item = latest_stable_version %} {% include
-    install_esp32_card.html %} {% include install_pico_card.html %} {% include
-    install_stm32_card.html %}
+    installer/install_esp32_card.html %} {% include
+    installer/install_pico_card.html %} {% include
+    installer/install_stm32_card.html %}
   </section>
 
   {% if latest_prerelease_version.published_at >
@@ -45,8 +46,9 @@ layout: default
       <a href="{{ latest_prerelease_version.html_url }}">Changelog</a></small
     >
     {% assign install_item = latest_prerelease_version %} {% include
-    install_esp32_card.html %} {% include install_pico_card.html %} {% include
-    install_stm32_card.html %}
+    installer/install_esp32_card.html %} {% include
+    installer/install_pico_card.html %} {% include
+    installer/install_stm32_card.html %}
   </section>
   {% endif %}
   <section class="latest-release">
@@ -67,5 +69,5 @@ layout: default
     document.querySelector(".not-supported-i").classList.remove("hidden");
   }
 </script>
-{% include pico_popup.html %}
+{% include installer/pico_popup.html %}
 <script src="{{ site.baseurl }}/assets/js/pico_popup.js"></script>

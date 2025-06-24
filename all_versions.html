@@ -78,8 +78,8 @@ layout: default
       <em>{{ version.published_at | date: "%Y-%m-%d" }}</em>
     </h3>
     {% assign install_item = version %} {% assign has_elixir =
-    version.has_elixir %} {% include install_esp32_buttons.html %} {% include
-    install_pico_buttons.html %}
+    version.has_elixir %} {% include installer/install_esp32_buttons.html %} {%
+    include installer/install_pico_buttons.html %}
   </section>
   {% endfor %}
 </div>
@@ -95,5 +95,5 @@ layout: default
   }
 </script>
 
-{% include pico_popup.html %}
+{% include installer/pico_popup.html %}
 <script src="{{ site.baseurl }}/assets/js/pico_popup.js"></script>
