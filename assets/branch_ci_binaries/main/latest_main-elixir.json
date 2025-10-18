@@ -10,6 +10,15 @@
       ]
     },
     {
+      "chipFamily": "ESP32-C2",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "atomvm-esp32c2-elixir.img"
+        }
+      ]
+    },
+    {
       "chipFamily": "ESP32-C3",
       "parts": [
         {
@@ -67,6 +76,6 @@
   "name": "AtomVM-esp32-mkimage",
   "new_install_improv_wait_time": 0,
   "new_install_prompt_erase": true,
-  "published_at": "2025-10-18T05:40:48Z",
+  "published_at": "2025-10-18T06:45:19Z",
   "version": "61a70d372824339818c218e885968548e3a21c75"
 }
