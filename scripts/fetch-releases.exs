@@ -30,6 +30,7 @@ defmodule AtomVMReleasesFetcher do
   # Chip family detection patterns
   @chip_families [
     {~r/esp32p4/i, "ESP32-P4"},
+    {~r/esp32c61/i, "ESP32-C61"},
     {~r/esp32c6/i, "ESP32-C6"},
     {~r/esp32c5/i, "ESP32-C5"},
     {~r/esp32c3/i, "ESP32-C3"},
