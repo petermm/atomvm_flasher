@@ -46,7 +46,7 @@
       ]
     },
     {
-      "chipFamily": "ESP32-C6",
+      "chipFamily": "ESP32-C61",
       "parts": [
         {
           "offset": 0,
