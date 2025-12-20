@@ -367,6 +367,7 @@ defmodule AtomVMReleasesFetcher do
   def get_offset(name) do
     cond do
       String.match?(name, ~r/esp32p4/i) -> 8192
+      String.match?(name, ~r/esp32c5/i) -> 8192
       String.match?(name, ~r/esp32-/i) -> 4096
       String.match?(name, ~r/esp32s2/i) -> 4096
       true -> 0
