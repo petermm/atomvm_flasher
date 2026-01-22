@@ -73,6 +73,33 @@
       ]
     },
     {
+      "chipFamily": "ESP32-P4",
+      "parts": [
+        {
+          "offset": 8192,
+          "path": "atomvm-esp32p4_c6-elixir.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-P4",
+      "parts": [
+        {
+          "offset": 8192,
+          "path": "atomvm-esp32p4_pre-elixir.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-P4",
+      "parts": [
+        {
+          "offset": 8192,
+          "path": "atomvm-esp32p4_pre_c6-elixir.img"
+        }
+      ]
+    },
+    {
       "chipFamily": "ESP32-S2",
       "parts": [
         {
@@ -94,6 +121,6 @@
   "name": "AtomVM-esp32-mkimage",
   "new_install_improv_wait_time": 0,
   "new_install_prompt_erase": true,
-  "published_at": "2026-01-10T00:20:01Z",
-  "version": "2e32fe9d7cdbe172f4fb9dfd3bcb2bb58533cb12"
+  "published_at": "2026-01-22T08:05:54Z",
+  "version": "82b72be41ce6e44a1440e5d07144d9158c14bc9c"
 }
