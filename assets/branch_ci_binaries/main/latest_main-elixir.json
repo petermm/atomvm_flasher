@@ -1,24 +1,6 @@
 {
   "builds": [
     {
-      "chipFamily": "ESP32",
-      "parts": [
-        {
-          "offset": 4096,
-          "path": "atomvm-esp32-elixir.img"
-        }
-      ]
-    },
-    {
-      "chipFamily": "ESP32-C2",
-      "parts": [
-        {
-          "offset": 0,
-          "path": "atomvm-esp32c2-elixir.img"
-        }
-      ]
-    },
-    {
       "chipFamily": "ESP32-C3",
       "parts": [
         {
@@ -26,101 +8,11 @@
           "path": "atomvm-esp32c3-elixir.img"
         }
       ]
-    },
-    {
-      "chipFamily": "ESP32-C5",
-      "parts": [
-        {
-          "offset": 8192,
-          "path": "atomvm-esp32c5-elixir.img"
-        }
-      ]
-    },
-    {
-      "chipFamily": "ESP32-C6",
-      "parts": [
-        {
-          "offset": 0,
-          "path": "atomvm-esp32c6-elixir.img"
-        }
-      ]
-    },
-    {
-      "chipFamily": "ESP32-C61",
-      "parts": [
-        {
-          "offset": 0,
-          "path": "atomvm-esp32c61-elixir.img"
-        }
-      ]
-    },
-    {
-      "chipFamily": "ESP32-H2",
-      "parts": [
-        {
-          "offset": 0,
-          "path": "atomvm-esp32h2-elixir.img"
-        }
-      ]
-    },
-    {
-      "chipFamily": "ESP32-P4",
-      "parts": [
-        {
-          "offset": 8192,
-          "path": "atomvm-esp32p4-elixir.img"
-        }
-      ]
-    },
-    {
-      "chipFamily": "ESP32-P4",
-      "parts": [
-        {
-          "offset": 8192,
-          "path": "atomvm-esp32p4_c6-elixir.img"
-        }
-      ]
-    },
-    {
-      "chipFamily": "ESP32-P4",
-      "parts": [
-        {
-          "offset": 8192,
-          "path": "atomvm-esp32p4_pre-elixir.img"
-        }
-      ]
-    },
-    {
-      "chipFamily": "ESP32-P4",
-      "parts": [
-        {
-          "offset": 8192,
-          "path": "atomvm-esp32p4_pre_c6-elixir.img"
-        }
-      ]
-    },
-    {
-      "chipFamily": "ESP32-S2",
-      "parts": [
-        {
-          "offset": 4096,
-          "path": "atomvm-esp32s2-elixir.img"
-        }
-      ]
-    },
-    {
-      "chipFamily": "ESP32-S3",
-      "parts": [
-        {
-          "offset": 0,
-          "path": "atomvm-esp32s3-elixir.img"
-        }
-      ]
     }
   ],
   "name": "AtomVM-esp32-mkimage",
   "new_install_improv_wait_time": 0,
   "new_install_prompt_erase": true,
-  "published_at": "2026-01-22T19:41:48Z",
-  "version": "15cedee7a5931a0c8f83b6ea8be34f90bee60ced"
+  "published_at": "2026-01-23T17:51:57Z",
+  "version": "fd96d95ceb3570ff71b98eecdc16553f4d2bccf8"
 }
