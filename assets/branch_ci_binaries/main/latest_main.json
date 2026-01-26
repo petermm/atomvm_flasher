@@ -121,6 +121,6 @@
   "name": "AtomVM-esp32-mkimage",
   "new_install_improv_wait_time": 0,
   "new_install_prompt_erase": true,
-  "published_at": "2026-01-24T19:44:38Z",
-  "version": "e90d2159cdeb67ef01dbb4120ab0089e3cbc1e73"
+  "published_at": "2026-01-26T11:35:39Z",
+  "version": "5c3dc972c2799b701330561009efdd0192d27743"
 }
