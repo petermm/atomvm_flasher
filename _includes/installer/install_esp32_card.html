@@ -1,13 +1,13 @@
 <div class="card" style="width: 100%">
-  <div class="release-header">
-    <h3>ESP32</h3>
-    <small>{{ install_item.supported_boards | join: ", " }}</small>
-    <!-- <div class="release-text">
+    <div class="release-header">
+        <h3>ESP32</h3>
+        <small>{{ install_item.supported_boards | join: ", " }}</small>
+        <!-- <div class="release-text">
       Lorem ipsum dolor sit, amet consectetur adipisicing elit.
     </div> -->
-    <div class="install-section">
-      {% assign has_elixir = install_item.has_elixir %} {% include
-      install_esp32_buttons.html %}
+        <div class="install-section">
+            {% assign has_elixir = install_item.has_elixir %} {% include
+            installer/install_esp32_buttons.html %}
+        </div>
     </div>
-  </div>
 </div>
