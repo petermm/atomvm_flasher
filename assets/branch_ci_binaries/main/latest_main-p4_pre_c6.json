@@ -1,0 +1,18 @@
+{
+  "builds": [
+    {
+      "chipFamily": "ESP32-P4",
+      "parts": [
+        {
+          "offset": 8192,
+          "path": "atomvm-esp32p4_pre_c6.img"
+        }
+      ]
+    }
+  ],
+  "name": "AtomVM-esp32p4_pre_c6",
+  "new_install_improv_wait_time": 0,
+  "new_install_prompt_erase": true,
+  "published_at": "2026-02-06T20:31:05Z",
+  "version": "d75b9f11a3daae0899c19003d984d8226779a52a"
+}

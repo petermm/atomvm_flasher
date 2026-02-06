@@ -1,7 +1,20 @@
 ---
 main:
-  published_at: 2026-02-03T15:30:00Z
-  sha: dbc1540e3215ff63e04c2ccf834646a5519587ee
+  p4_variants:
+    - has_elixir: true
+      has_erlang: true
+      label: P4 + C6
+      suffix: p4_c6
+    - has_elixir: true
+      has_erlang: true
+      label: P4 Pre
+      suffix: p4_pre
+    - has_elixir: true
+      has_erlang: true
+      label: P4 Pre + C6
+      suffix: p4_pre_c6
+  published_at: 2026-02-06T20:31:05Z
+  sha: d75b9f11a3daae0899c19003d984d8226779a52a
   supported_boards:
     - ESP32
     - ESP32-C2
@@ -14,6 +27,7 @@ main:
     - ESP32-S2
     - ESP32-S3
 release-0.6:
+  p4_variants: []
   published_at: 2026-01-27T11:56:25Z
   sha: 6c084079630e274bf819bfd58c436f49b7d9525a
   supported_boards:
