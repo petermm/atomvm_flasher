@@ -34,5 +34,6 @@ jobs:
           git add assets/release_binaries
           git add assets/branch_ci_binaries
           git add _data/versions.yml
+          git add _data/branches.yml
           git commit -m "Update releases and assets" || exit 0
           git push

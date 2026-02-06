@@ -201,6 +201,9 @@ branches = String.split(repo_branch, ",")
 branches_dir = Path.join(["assets", "branch_ci_binaries"])
 File.mkdir_p!(branches_dir)
 
+# Accumulate branch metadata for _data/branches.yml
+branch_metadata = %{}
+
 # Clean up old branch directories
 if File.exists?(branches_dir) do
   File.ls!(branches_dir)
@@ -213,11 +216,13 @@ if File.exists?(branches_dir) do
   end)
 end
 
-Enum.each(branches, fn branch_name ->
+branch_metadata =
+Enum.reduce(branches, branch_metadata, fn branch_name, acc ->
   case GitHubArtifacts.get_workflow_artifacts(owner, repo, branch_name, workflow_name, token) do
     {:ok, artifacts, branch} ->
       if Enum.empty?(artifacts) do
         IO.puts("No artifacts found")
+        acc
       else
         output_dir = Path.join([branches_dir, branch["head_branch"]])
         File.mkdir_p!(output_dir)
@@ -255,6 +260,11 @@ Enum.each(branches, fn branch_name ->
         else
           IO.puts("Skipping download: branch #{branch["head_branch"]} already processed")
         end
+
+        Map.put(acc, branch["head_branch"], %{
+          "sha" => branch["head_sha"],
+          "published_at" => branch["updated_at"]
+        })
       end
 
     {:error, reason} ->
@@ -262,3 +272,8 @@ Enum.each(branches, fn branch_name ->
       System.halt(1)
   end
 end)
+
+# Write branch metadata to _data/branches.yml for Jekyll
+branches_yml_path = Path.join("_data", "branches.yml")
+IO.puts("Writing branch metadata to #{branches_yml_path}")
+File.write!(branches_yml_path, Ymlr.document!(branch_metadata))
