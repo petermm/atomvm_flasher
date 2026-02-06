@@ -12,8 +12,8 @@ defmodule AtomVMReleasesFetcher do
 
   @cutoff_date "2024-10-14T00:37:40Z"
 
-  @esp32_firmware_regex ~r/^AtomVM-esp32(?:[cp][2-6]|s[23])?(?:-elixir)?-v\d+\.\d+\.\d+\.img$/
-  @esp32_elixir_regex ~r/^AtomVM-esp32(?:[cp][2-6]|s[23])?-elixir-v\d+\.\d+\.\d+\.img$/
+  @esp32_firmware_regex ~r/^AtomVM-esp32(?:c(?:[2-6]|61)|s[23]|h2|p4(?:_(?:c6|pre|pre_c6))?)?(?:-elixir)?-v\d+\.\d+\.\d+\.img$/
+  @esp32_elixir_regex ~r/^AtomVM-esp32(?:c(?:[2-6]|61)|s[23]|h2|p4(?:_(?:c6|pre|pre_c6))?)?-elixir-v\d+\.\d+\.\d+\.img$/
   @pico_firmware_regex ~r/^AtomVM-pico(?:_w)?-v\d+\.\d+\.\d+\.uf2$/
   @pico_atomvmlib_regex ~r/^atomvmlib-v\d+\.\d+\.\d+\.uf2$/
 
@@ -188,21 +188,28 @@ defmodule AtomVMReleasesFetcher do
     esp32_assets =
       Enum.filter(release["assets"], &Regex.match?(@esp32_firmware_regex, &1["name"]))
 
-    IO.puts("#{release["tag_name"]}: Found #{length(esp32_assets)} ESP32 matching firmware assets")
+    IO.puts(
+      "#{release["tag_name"]}: Found #{length(esp32_assets)} ESP32 matching firmware assets"
+    )
 
     if Enum.empty?(esp32_assets) do
       :ok
     else
       tag_dir = ensure_tag_directory(release["tag_name"])
 
+      {regular_assets, p4_variant_assets} =
+        Enum.split_with(esp32_assets, fn asset -> p4_variant_key(asset["name"]) == nil end)
+
       {standard_assets, elixir_assets} =
-        Enum.split_with(esp32_assets, &(!String.contains?(&1["name"], "-elixir-")))
+        Enum.split_with(regular_assets, &(!String.contains?(&1["name"], "-elixir-")))
 
       write_esp32_release_data(release, standard_assets, tag_dir, "esp32_release.json")
 
       unless Enum.empty?(elixir_assets) do
         write_esp32_release_data(release, elixir_assets, tag_dir, "esp32_release-elixir.json")
       end
+
+      write_p4_variant_release_data(release, p4_variant_assets, tag_dir)
 
       Enum.each(esp32_assets, fn asset ->
         asset_path = Path.join(tag_dir, asset["name"])
@@ -302,6 +309,68 @@ defmodule AtomVMReleasesFetcher do
       String.match?(name, ~r/esp32-/i) -> 4096
       String.match?(name, ~r/esp32s2/i) -> 4096
       true -> 0
+    end
+  end
+
+  defp write_p4_variant_release_data(release, assets, tag_dir) do
+    Enum.each(p4_variants(), fn %{key: key, suffix: suffix} ->
+      variant_assets = Enum.filter(assets, fn asset -> p4_variant_key(asset["name"]) == key end)
+
+      write_optional_esp32_release_data(
+        release,
+        variant_assets,
+        tag_dir,
+        "esp32_release-#{suffix}.json",
+        false
+      )
+
+      write_optional_esp32_release_data(
+        release,
+        variant_assets,
+        tag_dir,
+        "esp32_release-#{suffix}-elixir.json",
+        true
+      )
+    end)
+  end
+
+  defp write_optional_esp32_release_data(release, assets, tag_dir, filename, elixir?) do
+    filtered =
+      if elixir? do
+        Enum.filter(assets, &String.contains?(&1["name"], "-elixir-"))
+      else
+        Enum.reject(assets, &String.contains?(&1["name"], "-elixir-"))
+      end
+
+    json_path = Path.join(tag_dir, filename)
+
+    case filtered do
+      [] ->
+        if File.exists?(json_path), do: File.rm!(json_path)
+        :ok
+
+      matching ->
+        release_data = create_release_data(release, matching)
+        IO.puts("Writing release data to #{json_path}")
+        File.write!(json_path, Jason.encode!(release_data, pretty: true))
+        :ok
+    end
+  end
+
+  defp p4_variants do
+    [
+      %{key: :p4_c6, suffix: "p4_c6"},
+      %{key: :p4_pre, suffix: "p4_pre"},
+      %{key: :p4_pre_c6, suffix: "p4_pre_c6"}
+    ]
+  end
+
+  defp p4_variant_key(name) do
+    cond do
+      String.match?(name, ~r/esp32p4_pre_c6/i) -> :p4_pre_c6
+      String.match?(name, ~r/esp32p4_pre/i) -> :p4_pre
+      String.match?(name, ~r/esp32p4_c6/i) -> :p4_c6
+      true -> nil
     end
   end
 end
