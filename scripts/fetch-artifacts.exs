@@ -24,17 +24,9 @@ defmodule GitHubArtifacts do
       )
 
     with {:ok, workflow_id} <- get_workflow_id(req_client, owner, repo, workflow_name),
-         {:ok, latest_run} <-
-           get_latest_workflow_run(req_client, owner, repo, repo_branch, workflow_id) do
-      case get_run_artifacts(req_client, owner, repo, latest_run["id"]) do
-        {:ok, artifacts} ->
-          IO.inspect(latest_run)
-          IO.inspect(artifacts)
-          {:ok, artifacts, latest_run}
-
-        error ->
-          error
-      end
+         {:ok, recent_runs} <-
+           get_recent_workflow_runs(req_client, owner, repo, repo_branch, workflow_id) do
+      find_run_with_artifacts(req_client, owner, repo, recent_runs)
     end
   end
 
@@ -103,21 +95,42 @@ defmodule GitHubArtifacts do
     end
   end
 
-  defp get_latest_workflow_run(req_client, owner, repo, repo_branch, workflow_id) do
+  defp get_recent_workflow_runs(req_client, owner, repo, repo_branch, workflow_id) do
     case Req.get(req_client,
            url: "/repos/#{owner}/#{repo}/actions/workflows/#{workflow_id}/runs",
-           params: [branch: repo_branch, per_page: 1]
+           params: [branch: repo_branch, status: "success", per_page: 10]
          ) do
       {:ok, %{status: 200, body: %{"workflow_runs" => []}}} ->
-        {:error, "No workflow runs found"}
+        {:error, "No successful workflow runs found"}
 
-      {:ok, %{status: 200, body: %{"workflow_runs" => [latest_run | _]}}} ->
-        {:ok, latest_run}
+      {:ok, %{status: 200, body: %{"workflow_runs" => runs}}} ->
+        {:ok, runs}
 
       {:ok, %{status: status}} ->
         {:error, "HTTP #{status}"}
 
       {:error, _} = error ->
+        error
+    end
+  end
+
+  defp find_run_with_artifacts(_req_client, _owner, _repo, []) do
+    {:error, "No workflow runs with artifacts found in recent history"}
+  end
+
+  defp find_run_with_artifacts(req_client, owner, repo, [run | rest]) do
+    IO.puts("Checking run ##{run["run_number"]} (#{run["head_sha"] |> String.slice(0, 7)}) for artifacts...")
+
+    case get_run_artifacts(req_client, owner, repo, run["id"]) do
+      {:ok, []} ->
+        IO.puts("  No artifacts, trying previous run...")
+        find_run_with_artifacts(req_client, owner, repo, rest)
+
+      {:ok, artifacts} ->
+        IO.puts("  Found #{length(artifacts)} artifacts")
+        {:ok, artifacts, run}
+
+      error ->
         error
     end
   end
