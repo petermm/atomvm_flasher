@@ -656,6 +656,40 @@ a.button:not(.button-back):hover::after {
     margin: 0 0 0.65rem;
 }
 
+.p4-variants-summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0;
+}
+
+.p4-variants-summary::-webkit-details-marker {
+    display: none;
+}
+
+.p4-variants-summary::before {
+    content: "▸";
+    display: inline-block;
+    color: var(--text-secondary, #9ca3af);
+    transform: translateY(-0.5px);
+}
+
+.p4-variants-details[open] > .p4-variants-summary::before {
+    content: "▾";
+}
+
+.p4-variants-body {
+    margin-top: 0.65rem;
+}
+
+.p4-variants-note {
+    margin: 0 0 0.65rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary, #9ca3af);
+}
+
 .p4-variants-grid {
     display: flex;
     flex-wrap: wrap;
