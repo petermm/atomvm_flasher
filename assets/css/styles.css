@@ -459,15 +459,20 @@ a.button:hover {
         color-mix(in srgb, var(--links, #91a7ff) 15%, transparent);
 }
 
-.view-all .button::after,
-a.button::after {
+.view-all .button:not(.button-back)::after,
+a.button:not(.button-back)::after {
     content: "→";
     transition: transform 0.2s ease;
 }
 
-.view-all .button:hover::after,
-a.button:hover::after {
+.view-all .button:not(.button-back):hover::after,
+a.button:not(.button-back):hover::after {
     transform: translateX(3px);
+}
+
+/* Back button – animate the leading arrow */
+.button-back:hover {
+    padding-left: 1.6rem;
 }
 
 /* The last section (view-all) needs no card-like BG */
