@@ -1,0 +1,35 @@
+{% assign branch_name = include.branch_name %}
+{% assign branch_info = include.branch_info %}
+{% if branch_info and branch_info.p4_variants %}
+<div class="p4-variants">
+  <h4 class="p4-variants-heading">ESP32-P4 Variants</h4>
+  <div class="p4-variants-grid">
+    {% assign base_filename = "latest_" | append: branch_name %}
+    {% for variant in branch_info.p4_variants %}
+    <div class="p4-variant-group">
+      <span class="p4-variant-label">{{ variant.label }}</span>
+      <div class="p4-variant-buttons">
+        {% if variant.has_elixir %}
+        <esp-web-install-button
+          manifest="{{ site.baseurl }}/assets/branch_ci_binaries/{{ branch_name }}/{{ base_filename }}-{{ variant.suffix }}-elixir.json"
+        >
+          <button slot="activate" class="p4-variant-btn">Elixir</button>
+          <i slot="unsupported"></i>
+        </esp-web-install-button>
+        {% endif %}
+        {% if variant.has_erlang %}
+        <esp-web-install-button
+          manifest="{{ site.baseurl }}/assets/branch_ci_binaries/{{ branch_name }}/{{ base_filename }}-{{ variant.suffix }}.json"
+        >
+          <button slot="activate" class="p4-variant-btn p4-variant-btn--secondary">
+            Erlang
+          </button>
+          <i slot="unsupported"></i>
+        </esp-web-install-button>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

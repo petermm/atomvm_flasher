@@ -3,192 +3,190 @@ layout: default
 ---
 
 <div class="container">
-    <h1>AtomVM Firmware</h1>
+  <h1>AtomVM Firmware</h1>
 
-    <p class="lead">AtomVM firmware images for the ESP32 family of devices.</p>
+  <p class="lead">AtomVM firmware images for the ESP32 family of devices.</p>
 
-    <section class="latest-release">
-        <div class="view-all">
-            <a href="{{ site.baseurl }}/" class="button button-back"
-                >← Back to latest release</a
+  <section class="latest-release">
+    <div class="view-all">
+      <a href="{{ site.baseurl }}/" class="button button-back"
+        >← Back to latest release</a
+      >
+    </div>
+  </section>
+
+  <!-- ===== Main Branch Builds ===== -->
+  <section class="latest-release">
+    <h2>
+      {% assign branch_name = "main" %} Main Branch Builds {% assign branch_info
+      = site.data.branches[branch_name] %} {% if branch_info %}
+      <small>
+        <a
+          href="https://github.com/atomvm/AtomVM/commit/{{ branch_info.sha }}"
+          title="{{ branch_info.sha }}"
+          >{{ branch_info.sha | slice: 0, 7 }}</a
+        >
+        · {{ branch_info.published_at | date: "%-d %b %Y" }}
+      </small>
+      {% endif %}
+    </h2>
+
+    <span class="warning-callout">These builds may be unstable</span>
+
+    <div class="platform-grid">
+      <div class="card">
+        <div class="release-header">
+          <h3><span class="platform-icon esp32">⚡</span> ESP32</h3>
+          <div class="board-chips">
+            {% for board in branch_info.supported_boards %}
+            <span class="board-chip">{{ board }}</span>
+            {% endfor %}
+          </div>
+          <div class="install-section">
+            <esp-web-install-button
+              manifest="{{ site.baseurl }}/assets/branch_ci_binaries/main/latest_main-elixir.json"
             >
+              <button slot="activate">
+                Install Erlang &amp; Elixir AtomVM from main
+              </button>
+              <i slot="unsupported">
+                The Web Flasher is not available because your browser does not
+                support Web Serial.<br />Use Google Chrome or Microsoft Edge
+                instead
+              </i>
+            </esp-web-install-button>
+
+            <esp-web-install-button
+              manifest="{{ site.baseurl }}/assets/branch_ci_binaries/main/latest_main.json"
+            >
+              <button slot="activate">Install Erlang AtomVM from main</button>
+              <i slot="unsupported"></i>
+            </esp-web-install-button>
+          </div>
+          {% include installer/install_p4_variants.html branch_name=branch_name
+          branch_info=branch_info %}
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- ===== Main Branch Builds ===== -->
-    <section class="latest-release">
-        <h2>
-            Main Branch Builds {% assign branch_info =
-            site.data.branches["main"] %} {% if branch_info %}
-            <small>
-                <a
-                    href="https://github.com/atomvm/AtomVM/commit/{{ branch_info.sha }}"
-                    title="{{ branch_info.sha }}"
-                    >{{ branch_info.sha | slice: 0, 7 }}</a
-                >
-                · {{ branch_info.published_at | date: "%-d %b %Y" }}
-            </small>
-            {% endif %}
-        </h2>
+  <!-- ===== Release-0.6 Branch Builds ===== -->
+  <section class="latest-release">
+    <h2>
+      {% assign branch_name = "release-0.6" %} Release-0.6 Branch Builds {%
+      assign branch_info = site.data.branches[branch_name] %} {% if branch_info
+      %}
+      <small>
+        <a
+          href="https://github.com/atomvm/AtomVM/commit/{{ branch_info.sha }}"
+          title="{{ branch_info.sha }}"
+          >{{ branch_info.sha | slice: 0, 7 }}</a
+        >
+        · {{ branch_info.published_at | date: "%-d %b %Y" }}
+      </small>
+      {% endif %}
+    </h2>
 
-        <span class="warning-callout">These builds may be unstable</span>
+    <span class="warning-callout">These builds may be unstable</span>
 
-        <div class="platform-grid">
-            <div class="card">
-                <div class="release-header">
-                    <h3><span class="platform-icon esp32">⚡</span> ESP32</h3>
-                    <div class="board-chips">
-                        {% for board in branch_info.supported_boards %}
-                        <span class="board-chip">{{ board }}</span>
-                        {% endfor %}
-                    </div>
-                    <div class="install-section">
-                        <esp-web-install-button
-                            manifest="{{ site.baseurl }}/assets/branch_ci_binaries/main/latest_main-elixir.json"
-                        >
-                            <button slot="activate">
-                                Install Erlang &amp; Elixir AtomVM from main
-                            </button>
-                            <i slot="unsupported">
-                                The Web Flasher is not available because your
-                                browser does not support Web Serial.<br />Use
-                                Google Chrome or Microsoft Edge instead
-                            </i>
-                        </esp-web-install-button>
+    <div class="platform-grid">
+      <div class="card">
+        <div class="release-header">
+          <h3><span class="platform-icon esp32">⚡</span> ESP32</h3>
+          <div class="board-chips">
+            {% for board in branch_info.supported_boards %}
+            <span class="board-chip">{{ board }}</span>
+            {% endfor %}
+          </div>
+          <div class="install-section">
+            <esp-web-install-button
+              manifest="{{ site.baseurl }}/assets/branch_ci_binaries/release-0.6/latest_release-0.6-elixir.json"
+            >
+              <button slot="activate">
+                Install Erlang &amp; Elixir AtomVM from release-0.6
+              </button>
+              <i slot="unsupported">
+                The Web Flasher is not available because your browser does not
+                support Web Serial.<br />Use Google Chrome or Microsoft Edge
+                instead
+              </i>
+            </esp-web-install-button>
 
-                        <esp-web-install-button
-                            manifest="{{ site.baseurl }}/assets/branch_ci_binaries/main/latest_main.json"
-                        >
-                            <button slot="activate">
-                                Install Erlang AtomVM from main
-                            </button>
-                            <i slot="unsupported"></i>
-                        </esp-web-install-button>
-                    </div>
-                </div>
+            <esp-web-install-button
+              manifest="{{ site.baseurl }}/assets/branch_ci_binaries/release-0.6/latest_release-0.6.json"
+            >
+              <button slot="activate">
+                Install Erlang AtomVM from release-0.6
+              </button>
+              <i slot="unsupported"></i>
+            </esp-web-install-button>
+          </div>
+          {% include installer/install_p4_variants.html branch_name=branch_name
+          branch_info=branch_info %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Tagged Releases ===== -->
+  <section class="latest-release">
+    <h2>All Releases</h2>
+
+    {% for version in site.data.versions.versions %}
+    <div class="version-block">
+      <h3>
+        <a href="{{ version.html_url }}">{{ version.version }}</a>
+        <em>{{ version.published_at | date: "%-d %b %Y" }}</em>
+      </h3>
+
+      <div class="platform-grid">
+        {% assign install_item = version %} {% assign has_elixir =
+        version.has_elixir %}
+
+        <div class="card">
+          <div class="release-header">
+            <h3><span class="platform-icon esp32">⚡</span> ESP32</h3>
+            <div class="board-chips">
+              {% for board in version.supported_boards %}
+              <span class="board-chip">{{ board }}</span>
+              {% endfor %}
             </div>
-        </div>
-    </section>
-
-    <!-- ===== Release-0.6 Branch Builds ===== -->
-    <section class="latest-release">
-        <h2>
-            Release-0.6 Branch Builds {% assign branch_info =
-            site.data.branches["release-0.6"] %} {% if branch_info %}
-            <small>
-                <a
-                    href="https://github.com/atomvm/AtomVM/commit/{{ branch_info.sha }}"
-                    title="{{ branch_info.sha }}"
-                    >{{ branch_info.sha | slice: 0, 7 }}</a
-                >
-                · {{ branch_info.published_at | date: "%-d %b %Y" }}
-            </small>
-            {% endif %}
-        </h2>
-
-        <span class="warning-callout">These builds may be unstable</span>
-
-        <div class="platform-grid">
-            <div class="card">
-                <div class="release-header">
-                    <h3><span class="platform-icon esp32">⚡</span> ESP32</h3>
-                    <div class="board-chips">
-                        {% for board in branch_info.supported_boards %}
-                        <span class="board-chip">{{ board }}</span>
-                        {% endfor %}
-                    </div>
-                    <div class="install-section">
-                        <esp-web-install-button
-                            manifest="{{ site.baseurl }}/assets/branch_ci_binaries/release-0.6/latest_release-0.6-elixir.json"
-                        >
-                            <button slot="activate">
-                                Install Erlang &amp; Elixir AtomVM from
-                                release-0.6
-                            </button>
-                            <i slot="unsupported">
-                                The Web Flasher is not available because your
-                                browser does not support Web Serial.<br />Use
-                                Google Chrome or Microsoft Edge instead
-                            </i>
-                        </esp-web-install-button>
-
-                        <esp-web-install-button
-                            manifest="{{ site.baseurl }}/assets/branch_ci_binaries/release-0.6/latest_release-0.6.json"
-                        >
-                            <button slot="activate">
-                                Install Erlang AtomVM from release-0.6
-                            </button>
-                            <i slot="unsupported"></i>
-                        </esp-web-install-button>
-                    </div>
-                </div>
+            <div class="install-section">
+              {% include installer/install_esp32_buttons.html %}
             </div>
+          </div>
         </div>
-    </section>
 
-    <!-- ===== Tagged Releases ===== -->
-    <section class="latest-release">
-        <h2>All Releases</h2>
-
-        {% for version in site.data.versions.versions %}
-        <div class="version-block">
-            <h3>
-                <a href="{{ version.html_url }}">{{ version.version }}</a>
-                <em>{{ version.published_at | date: "%-d %b %Y" }}</em>
-            </h3>
-
-            <div class="platform-grid">
-                {% assign install_item = version %} {% assign has_elixir =
-                version.has_elixir %}
-
-                <div class="card">
-                    <div class="release-header">
-                        <h3>
-                            <span class="platform-icon esp32">⚡</span> ESP32
-                        </h3>
-                        <div class="board-chips">
-                            {% for board in version.supported_boards %}
-                            <span class="board-chip">{{ board }}</span>
-                            {% endfor %}
-                        </div>
-                        <div class="install-section">
-                            {% include installer/install_esp32_buttons.html %}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="release-header">
-                        <h3>
-                            <span class="platform-icon pico">🍓</span> Rpi Pico
-                        </h3>
-                        <div class="board-chips">
-                            <span class="board-chip">Pico</span>
-                            <span class="board-chip">Pico W</span>
-                        </div>
-                        <div class="install-section">
-                            {% include installer/install_pico_buttons.html %}
-                        </div>
-                    </div>
-                </div>
+        <div class="card">
+          <div class="release-header">
+            <h3><span class="platform-icon pico">🍓</span> Rpi Pico</h3>
+            <div class="board-chips">
+              <span class="board-chip">Pico</span>
+              <span class="board-chip">Pico W</span>
             </div>
+            <div class="install-section">
+              {% include installer/install_pico_buttons.html %}
+            </div>
+          </div>
         </div>
-        {% endfor %}
-    </section>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
 </div>
 
 <link
-    rel="stylesheet"
-    href="{{ site.baseurl }}/assets/css/styles.css?v={{ site.time | date: '%s' }}"
+  rel="stylesheet"
+  href="{{ site.baseurl }}/assets/css/styles.css?v={{ site.time | date: '%s' }}"
 />
 <script
-    type="module"
-    src="{{ site.baseurl }}/assets/install_button_modules/install-button.js?module&v={{ site.time | date: '%s' }}"
+  type="module"
+  src="{{ site.baseurl }}/assets/install_button_modules/install-button.js?module&v={{ site.time | date: '%s' }}"
 ></script>
 <script>
-    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-        document.querySelector(".not-supported-i").classList.remove("hidden");
-    }
+  if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+    document.querySelector(".not-supported-i").classList.remove("hidden");
+  }
 </script>
 
 {% include installer/pico_popup.html %}
