@@ -274,9 +274,17 @@ Enum.reduce(branches, branch_metadata, fn branch_name, acc ->
           IO.puts("Skipping download: branch #{branch["head_branch"]} already processed")
         end
 
+        # Extract supported boards from the build manifest
+        supported_boards =
+          release_data["builds"]
+          |> Enum.map(fn build -> build["chipFamily"] end)
+          |> Enum.uniq()
+          |> Enum.sort()
+
         Map.put(acc, branch["head_branch"], %{
           "sha" => branch["head_sha"],
-          "published_at" => branch["updated_at"]
+          "published_at" => branch["updated_at"],
+          "supported_boards" => supported_boards
         })
       end
 
