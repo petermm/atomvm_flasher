@@ -1,7 +1,4 @@
 ---
-main:
-  sha: dbc1540e3215ff63e04c2ccf834646a5519587ee
-  published_at: 2026-02-03T15:30:00Z
 release-0.6:
-  sha: 6c084079630e274bf819bfd58c436f49b7d9525a
   published_at: 2026-01-27T11:56:25Z
+  sha: 6c084079630e274bf819bfd58c436f49b7d9525a
