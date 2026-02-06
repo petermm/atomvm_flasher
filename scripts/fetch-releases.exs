@@ -19,7 +19,7 @@ defmodule AtomVMReleasesFetcher do
     assets_dir: "assets/release_binaries"
   }
 
-  @cutoff_date "2023-10-14T00:37:40Z"
+  @cutoff_date "2024-10-14T00:37:40Z"
 
   # Asset pattern matching
   @esp32_firmware_regex ~r/^AtomVM-esp32(?:[cp][2-6]|s[23])?(?:-elixir)?-v\d+\.\d+\.\d+\.img$/
