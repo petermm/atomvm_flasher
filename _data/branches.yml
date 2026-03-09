@@ -13,8 +13,8 @@ main:
       has_erlang: true
       label: P4 Pre + C6
       suffix: p4_pre_c6
-  published_at: 2026-03-08T22:51:05Z
-  sha: 928521a921068779d1bc8ab5cdf35d800bd17811
+  published_at: 2026-03-09T09:52:42Z
+  sha: d2d58f5c09ae80c44373f7756dff0bc8ef4e6413
   supported_boards:
     - ESP32
     - ESP32-C2
