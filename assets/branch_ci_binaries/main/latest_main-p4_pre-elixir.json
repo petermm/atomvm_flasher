@@ -13,6 +13,6 @@
   "name": "AtomVM-esp32p4_pre-elixir",
   "new_install_improv_wait_time": 0,
   "new_install_prompt_erase": true,
-  "published_at": "2026-03-10T13:03:54Z",
-  "version": "c805acc6b9be0f4d1fcd424212367b41fb815419"
+  "published_at": "2026-03-11T12:15:35Z",
+  "version": "e9cb79cc3bbbda593292d5c0d6ae06feec6446ff"
 }
