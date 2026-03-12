@@ -27,6 +27,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: elixir scripts/fetch-artifacts.exs atomvm atomvm main,release-0.6 "esp32-mkimage"
 
+      - name: Fetch latest Pico branch artifacts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: elixir scripts/fetch-artifacts.exs atomvm atomvm main "Pico Build"
+
       - name: Commit and push changes
         run: |
           git config --global user.name 'Installer updater'

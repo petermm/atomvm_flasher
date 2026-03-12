@@ -339,8 +339,63 @@ defmodule FetchArtifactsCLI do
     branches_dir = Path.join(["assets", "branch_ci_binaries"])
     File.mkdir_p!(branches_dir)
 
-    branch_metadata = %{}
+    if pico_workflow?(workflow_name) do
+      fetch_pico_branches(owner, repo, branches, workflow_name, token, branches_dir)
+    else
+      fetch_esp32_branches(owner, repo, branches, workflow_name, token, branches_dir)
+    end
+  end
 
+  defp pico_workflow?(workflow_name) do
+    String.contains?(String.downcase(workflow_name), "pico")
+  end
+
+  defp fetch_pico_branches(owner, repo, branches, workflow_name, token, branches_dir) do
+    Enum.each(branches, fn branch_name ->
+      case GitHubArtifacts.get_workflow_artifacts(owner, repo, branch_name, workflow_name, token) do
+        {:ok, all_artifacts, branch} ->
+          artifacts =
+            Enum.filter(all_artifacts, fn a -> String.contains?(a["name"], "combined") end)
+
+          if Enum.empty?(artifacts) do
+            IO.puts("No combined Pico artifacts found for branch #{branch_name}")
+          else
+            output_dir = Path.join([branches_dir, branch["head_branch"]])
+            File.mkdir_p!(output_dir)
+            last_download_file = Path.join(output_dir, "last_download_pico")
+
+            is_new_run =
+              case File.read(last_download_file) do
+                {:ok, last_sha} -> String.trim(last_sha) != branch["head_sha"]
+                {:error, _} -> true
+              end
+
+            if is_new_run do
+              IO.puts("\nProcessing #{length(artifacts)} Pico artifacts to #{output_dir}")
+              File.write!(last_download_file, branch["head_sha"])
+
+              Enum.each(artifacts, fn artifact ->
+                IO.puts("\nArtifact: #{artifact["name"]}")
+                IO.puts("Size: #{artifact["size_in_bytes"]} bytes")
+
+                case GitHubArtifacts.download_and_extract_artifact(artifact, token, output_dir) do
+                  {:ok, path} -> IO.puts("Successfully extracted to: #{path}")
+                  {:error, reason} -> IO.puts("Failed: #{inspect(reason)}")
+                end
+              end)
+            else
+              IO.puts("Skipping Pico download: branch #{branch["head_branch"]} already processed")
+            end
+          end
+
+        {:error, reason} ->
+          IO.puts("Error fetching Pico artifacts: #{inspect(reason)}")
+          System.halt(1)
+      end
+    end)
+  end
+
+  defp fetch_esp32_branches(owner, repo, branches, workflow_name, token, branches_dir) do
     if File.exists?(branches_dir) do
       File.ls!(branches_dir)
       |> Enum.filter(&File.dir?(Path.join(branches_dir, &1)))
@@ -353,7 +408,7 @@ defmodule FetchArtifactsCLI do
     end
 
     branch_metadata =
-      Enum.reduce(branches, branch_metadata, fn branch_name, acc ->
+      Enum.reduce(branches, %{}, fn branch_name, acc ->
         case GitHubArtifacts.get_workflow_artifacts(owner, repo, branch_name, workflow_name, token) do
           {:ok, artifacts, branch} ->
             if Enum.empty?(artifacts) do
