@@ -67,6 +67,21 @@ layout: default
           branch_info=branch_info %}
         </div>
       </div>
+
+      <div class="card">
+        <div class="release-header">
+          <h3><span class="platform-icon pico">🍓</span> Rpi Pico</h3>
+          <div class="board-chips">
+            <span class="board-chip">Pico</span>
+            <span class="board-chip">Pico W</span>
+            <span class="board-chip">Pico 2</span>
+            <span class="board-chip">Pico 2 W</span>
+          </div>
+          <div class="install-section">
+            {% include installer/install_pico_branch_buttons.html branch_name="main" %}
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
