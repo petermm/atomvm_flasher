@@ -351,48 +351,69 @@ defmodule FetchArtifactsCLI do
   end
 
   defp fetch_pico_branches(owner, repo, branches, workflow_name, token, branches_dir) do
-    Enum.each(branches, fn branch_name ->
-      case GitHubArtifacts.get_workflow_artifacts(owner, repo, branch_name, workflow_name, token) do
-        {:ok, all_artifacts, branch} ->
-          artifacts =
-            Enum.filter(all_artifacts, fn a -> String.contains?(a["name"], "combined") end)
+    branches_yml_path = Path.join("_data", "branches.yml")
 
-          if Enum.empty?(artifacts) do
-            IO.puts("No combined Pico artifacts found for branch #{branch_name}")
-          else
-            output_dir = Path.join([branches_dir, branch["head_branch"]])
-            File.mkdir_p!(output_dir)
-            last_download_file = Path.join(output_dir, "last_download_pico")
+    existing_metadata =
+      case File.read(branches_yml_path) do
+        {:ok, content} -> YamlElixir.read_from_string!(content)
+        {:error, _} -> %{}
+      end
 
-            is_new_run =
-              case File.read(last_download_file) do
-                {:ok, last_sha} -> String.trim(last_sha) != branch["head_sha"]
-                {:error, _} -> true
+    updated_metadata =
+      Enum.reduce(branches, existing_metadata, fn branch_name, acc ->
+        case GitHubArtifacts.get_workflow_artifacts(owner, repo, branch_name, workflow_name, token) do
+          {:ok, all_artifacts, branch} ->
+            artifacts =
+              Enum.filter(all_artifacts, fn a -> String.contains?(a["name"], "combined") end)
+
+            if Enum.empty?(artifacts) do
+              IO.puts("No combined Pico artifacts found for branch #{branch_name}")
+              acc
+            else
+              output_dir = Path.join([branches_dir, branch["head_branch"]])
+              File.mkdir_p!(output_dir)
+              last_download_file = Path.join(output_dir, "last_download_pico")
+
+              is_new_run =
+                case File.read(last_download_file) do
+                  {:ok, last_sha} -> String.trim(last_sha) != branch["head_sha"]
+                  {:error, _} -> true
+                end
+
+              if is_new_run do
+                IO.puts("\nProcessing #{length(artifacts)} Pico artifacts to #{output_dir}")
+                File.write!(last_download_file, branch["head_sha"])
+
+                Enum.each(artifacts, fn artifact ->
+                  IO.puts("\nArtifact: #{artifact["name"]}")
+                  IO.puts("Size: #{artifact["size_in_bytes"]} bytes")
+
+                  case GitHubArtifacts.download_and_extract_artifact(artifact, token, output_dir) do
+                    {:ok, path} -> IO.puts("Successfully extracted to: #{path}")
+                    {:error, reason} -> IO.puts("Failed: #{inspect(reason)}")
+                  end
+                end)
+              else
+                IO.puts("Skipping Pico download: branch #{branch["head_branch"]} already processed")
               end
 
-            if is_new_run do
-              IO.puts("\nProcessing #{length(artifacts)} Pico artifacts to #{output_dir}")
-              File.write!(last_download_file, branch["head_sha"])
+              branch_key = branch["head_branch"]
+              branch_data = Map.get(acc, branch_key, %{})
 
-              Enum.each(artifacts, fn artifact ->
-                IO.puts("\nArtifact: #{artifact["name"]}")
-                IO.puts("Size: #{artifact["size_in_bytes"]} bytes")
-
-                case GitHubArtifacts.download_and_extract_artifact(artifact, token, output_dir) do
-                  {:ok, path} -> IO.puts("Successfully extracted to: #{path}")
-                  {:error, reason} -> IO.puts("Failed: #{inspect(reason)}")
-                end
-              end)
-            else
-              IO.puts("Skipping Pico download: branch #{branch["head_branch"]} already processed")
+              Map.put(acc, branch_key, Map.merge(branch_data, %{
+                "pico_sha" => branch["head_sha"],
+                "pico_published_at" => branch["updated_at"]
+              }))
             end
-          end
 
-        {:error, reason} ->
-          IO.puts("Error fetching Pico artifacts: #{inspect(reason)}")
-          System.halt(1)
-      end
-    end)
+          {:error, reason} ->
+            IO.puts("Error fetching Pico artifacts: #{inspect(reason)}")
+            System.halt(1)
+        end
+      end)
+
+    IO.puts("Writing branch metadata to #{branches_yml_path}")
+    File.write!(branches_yml_path, Ymlr.document!(updated_metadata))
   end
 
   defp fetch_esp32_branches(owner, repo, branches, workflow_name, token, branches_dir) do

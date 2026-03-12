@@ -19,16 +19,7 @@ layout: default
   <section class="latest-release">
     <h2>
       {% assign branch_name = "main" %} Main Branch Builds {% assign branch_info
-      = site.data.branches[branch_name] %} {% if branch_info %}
-      <small>
-        <a
-          href="https://github.com/atomvm/AtomVM/commit/{{ branch_info.sha }}"
-          title="{{ branch_info.sha }}"
-          >{{ branch_info.sha | slice: 0, 7 }}</a
-        >
-        · {{ branch_info.published_at | date: "%-d %b %Y" }}
-      </small>
-      {% endif %}
+      = site.data.branches[branch_name] %}
     </h2>
 
     <span class="warning-callout">These builds may be unstable</span>
@@ -37,6 +28,16 @@ layout: default
       <div class="card">
         <div class="release-header">
           <h3><span class="platform-icon esp32">⚡</span> ESP32</h3>
+          {% if branch_info.sha %}
+          <small>
+            <a
+              href="https://github.com/atomvm/AtomVM/commit/{{ branch_info.sha }}"
+              title="{{ branch_info.sha }}"
+              >{{ branch_info.sha | slice: 0, 7 }}</a
+            >
+            · {{ branch_info.published_at | date: "%-d %b %Y" }}
+          </small>
+          {% endif %}
           <div class="board-chips">
             {% for board in branch_info.supported_boards %}
             <span class="board-chip">{{ board }}</span>
@@ -71,6 +72,16 @@ layout: default
       <div class="card">
         <div class="release-header">
           <h3><span class="platform-icon pico">🍓</span> Rpi Pico</h3>
+          {% if branch_info.pico_sha %}
+          <small>
+            <a
+              href="https://github.com/atomvm/AtomVM/commit/{{ branch_info.pico_sha }}"
+              title="{{ branch_info.pico_sha }}"
+              >{{ branch_info.pico_sha | slice: 0, 7 }}</a
+            >
+            · {{ branch_info.pico_published_at | date: "%-d %b %Y" }}
+          </small>
+          {% endif %}
           <div class="board-chips">
             <span class="board-chip">Pico</span>
             <span class="board-chip">Pico W</span>
@@ -89,17 +100,7 @@ layout: default
   <section class="latest-release">
     <h2>
       {% assign branch_name = "release-0.6" %} Release-0.6 Branch Builds {%
-      assign branch_info = site.data.branches[branch_name] %} {% if branch_info
-      %}
-      <small>
-        <a
-          href="https://github.com/atomvm/AtomVM/commit/{{ branch_info.sha }}"
-          title="{{ branch_info.sha }}"
-          >{{ branch_info.sha | slice: 0, 7 }}</a
-        >
-        · {{ branch_info.published_at | date: "%-d %b %Y" }}
-      </small>
-      {% endif %}
+      assign branch_info = site.data.branches[branch_name] %}
     </h2>
 
     <span class="warning-callout">These builds may be unstable</span>
@@ -108,6 +109,16 @@ layout: default
       <div class="card">
         <div class="release-header">
           <h3><span class="platform-icon esp32">⚡</span> ESP32</h3>
+          {% if branch_info.sha %}
+          <small>
+            <a
+              href="https://github.com/atomvm/AtomVM/commit/{{ branch_info.sha }}"
+              title="{{ branch_info.sha }}"
+              >{{ branch_info.sha | slice: 0, 7 }}</a
+            >
+            · {{ branch_info.published_at | date: "%-d %b %Y" }}
+          </small>
+          {% endif %}
           <div class="board-chips">
             {% for board in branch_info.supported_boards %}
             <span class="board-chip">{{ board }}</span>
