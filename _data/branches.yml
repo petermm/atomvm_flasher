@@ -13,10 +13,10 @@ main:
       has_erlang: true
       label: P4 Pre + C6
       suffix: p4_pre_c6
-  pico_published_at: 2026-03-18T18:08:14Z
-  pico_sha: a9454d0f7066327e5a3ccd5a57f85950afc875d3
-  published_at: 2026-03-18T14:16:31Z
-  sha: a9454d0f7066327e5a3ccd5a57f85950afc875d3
+  pico_published_at: 2026-03-18T23:12:23Z
+  pico_sha: f7d61c3bf41024f2447b407ccd5a93da22bf8759
+  published_at: 2026-03-18T22:39:09Z
+  sha: f7d61c3bf41024f2447b407ccd5a93da22bf8759
   supported_boards:
     - ESP32
     - ESP32-C2
