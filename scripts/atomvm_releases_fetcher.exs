@@ -12,10 +12,10 @@ defmodule AtomVMReleasesFetcher do
 
   @cutoff_date "2024-10-14T00:37:40Z"
 
-  @esp32_firmware_regex ~r/^AtomVM-esp32(?:c(?:[2-6]|61)|s[23]|h2|p4(?:_(?:c6|pre|pre_c6))?)?(?:-elixir)?-v\d+\.\d+\.\d+\.img$/
-  @esp32_elixir_regex ~r/^AtomVM-esp32(?:c(?:[2-6]|61)|s[23]|h2|p4(?:_(?:c6|pre|pre_c6))?)?-elixir-v\d+\.\d+\.\d+\.img$/
-  @pico_firmware_regex ~r/^AtomVM-pico(?:_w)?-v\d+\.\d+\.\d+\.uf2$/
-  @pico_atomvmlib_regex ~r/^atomvmlib-v\d+\.\d+\.\d+\.uf2$/
+  @esp32_firmware_regex ~r/^AtomVM-esp32(?:c(?:[2-6]|61)|s[23]|h2|p4(?:_(?:c6|pre|pre_c6))?)?(?:-elixir)?-v\d+\.\d+\.\d+(?:-[a-zA-Z0-9.]+)?\.img$/
+  @esp32_elixir_regex ~r/^AtomVM-esp32(?:c(?:[2-6]|61)|s[23]|h2|p4(?:_(?:c6|pre|pre_c6))?)?-elixir-v\d+\.\d+\.\d+(?:-[a-zA-Z0-9.]+)?\.img$/
+  @pico_firmware_regex ~r/^AtomVM-pico(?:_w)?-v\d+\.\d+\.\d+(?:-[a-zA-Z0-9.]+)?\.uf2$/
+  @pico_atomvmlib_regex ~r/^atomvmlib-v\d+\.\d+\.\d+(?:-[a-zA-Z0-9.]+)?\.uf2$/
 
   @chip_families [
     {~r/esp32p4/i, "ESP32-P4"},
