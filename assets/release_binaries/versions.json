@@ -2,6 +2,7 @@
   "versions": [
     {
       "has_elixir": true,
+      "has_pico2": true,
       "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.7.0-alpha.0",
       "published_at": "2026-03-20T13:04:05Z",
       "supported_boards": [
@@ -20,6 +21,7 @@
     },
     {
       "has_elixir": true,
+      "has_pico2": false,
       "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.6",
       "published_at": "2025-06-23T23:04:23Z",
       "supported_boards": [
@@ -36,6 +38,7 @@
     },
     {
       "has_elixir": true,
+      "has_pico2": false,
       "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.5",
       "published_at": "2024-10-15T00:37:40Z",
       "supported_boards": [
