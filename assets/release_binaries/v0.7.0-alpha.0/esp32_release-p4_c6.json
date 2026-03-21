@@ -1,0 +1,19 @@
+{
+  "builds": [
+    {
+      "chipFamily": "ESP32-P4",
+      "parts": [
+        {
+          "offset": 8192,
+          "path": "AtomVM-esp32p4_c6-v0.7.0-alpha.0.img"
+        }
+      ]
+    }
+  ],
+  "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.7.0-alpha.0",
+  "name": "AtomVM",
+  "new_install_improv_wait_time": 0,
+  "new_install_prompt_erase": true,
+  "published_at": "2026-03-20T13:04:05Z",
+  "version": "v0.7.0-alpha.0"
+}

@@ -5,7 +5,7 @@
       "parts": [
         {
           "offset": 4096,
-          "path": "AtomVM-esp32-elixir-v0.6.6.img"
+          "path": "AtomVM-esp32-elixir-v0.7.0-alpha.0.img"
         }
       ]
     },
@@ -14,7 +14,7 @@
       "parts": [
         {
           "offset": 0,
-          "path": "AtomVM-esp32c2-elixir-v0.6.6.img"
+          "path": "AtomVM-esp32c2-elixir-v0.7.0-alpha.0.img"
         }
       ]
     },
@@ -23,7 +23,16 @@
       "parts": [
         {
           "offset": 0,
-          "path": "AtomVM-esp32c3-elixir-v0.6.6.img"
+          "path": "AtomVM-esp32c3-elixir-v0.7.0-alpha.0.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C5",
+      "parts": [
+        {
+          "offset": 8192,
+          "path": "AtomVM-esp32c5-elixir-v0.7.0-alpha.0.img"
         }
       ]
     },
@@ -32,7 +41,16 @@
       "parts": [
         {
           "offset": 0,
-          "path": "AtomVM-esp32c6-elixir-v0.6.6.img"
+          "path": "AtomVM-esp32c6-elixir-v0.7.0-alpha.0.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C61",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "AtomVM-esp32c61-elixir-v0.7.0-alpha.0.img"
         }
       ]
     },
@@ -41,7 +59,7 @@
       "parts": [
         {
           "offset": 0,
-          "path": "AtomVM-esp32h2-elixir-v0.6.6.img"
+          "path": "AtomVM-esp32h2-elixir-v0.7.0-alpha.0.img"
         }
       ]
     },
@@ -50,7 +68,7 @@
       "parts": [
         {
           "offset": 8192,
-          "path": "AtomVM-esp32p4-elixir-v0.6.6.img"
+          "path": "AtomVM-esp32p4-elixir-v0.7.0-alpha.0.img"
         }
       ]
     },
@@ -59,7 +77,7 @@
       "parts": [
         {
           "offset": 4096,
-          "path": "AtomVM-esp32s2-elixir-v0.6.6.img"
+          "path": "AtomVM-esp32s2-elixir-v0.7.0-alpha.0.img"
         }
       ]
     },
@@ -68,15 +86,15 @@
       "parts": [
         {
           "offset": 0,
-          "path": "AtomVM-esp32s3-elixir-v0.6.6.img"
+          "path": "AtomVM-esp32s3-elixir-v0.7.0-alpha.0.img"
         }
       ]
     }
   ],
-  "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.6.6",
+  "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.7.0-alpha.0",
   "name": "AtomVM",
   "new_install_improv_wait_time": 0,
   "new_install_prompt_erase": true,
-  "published_at": "2025-06-23T23:04:23Z",
-  "version": "v0.6.6"
+  "published_at": "2026-03-20T13:04:05Z",
+  "version": "v0.7.0-alpha.0"
 }

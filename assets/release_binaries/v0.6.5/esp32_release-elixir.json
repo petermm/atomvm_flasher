@@ -37,6 +37,15 @@
       ]
     },
     {
+      "chipFamily": "ESP32-H2",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "AtomVM-esp32h2-elixir-v0.6.5.img"
+        }
+      ]
+    },
+    {
       "chipFamily": "ESP32-S2",
       "parts": [
         {
