@@ -4,6 +4,10 @@
         <div class="board-chips">
             <span class="board-chip">Pico</span>
             <span class="board-chip">Pico W</span>
+            {% if install_item.has_pico2 %}
+            <span class="board-chip">Pico 2</span>
+            <span class="board-chip">Pico 2 W</span>
+            {% endif %}
         </div>
         <div class="install-section">
             {% include installer/install_pico_buttons.html %}

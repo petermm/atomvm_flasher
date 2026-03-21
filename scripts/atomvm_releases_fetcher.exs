@@ -114,6 +114,9 @@ defmodule AtomVMReleasesFetcher do
           has_elixir_assets =
             Enum.any?(release["assets"], &Regex.match?(@esp32_elixir_regex, &1["name"]))
 
+          has_pico2 =
+            Enum.any?(release["assets"], fn a -> String.match?(a["name"], ~r/pico2/i) end)
+
           supported_boards = get_supported_boards(release["assets"])
 
           %{
@@ -121,6 +124,7 @@ defmodule AtomVMReleasesFetcher do
             "published_at" => release["published_at"],
             "html_url" => release["html_url"],
             "has_elixir" => has_elixir_assets,
+            "has_pico2" => has_pico2,
             "supported_boards" => Enum.sort(supported_boards)
           }
         end)
@@ -158,30 +162,45 @@ defmodule AtomVMReleasesFetcher do
 
     tag_dir = ensure_tag_directory(release["tag_name"])
 
-    atomvmlib_path = download_atomvmlib_if_available(pico_atomvmlib_assets, tag_dir)
-    create_combined_pico_assets(pico_assets, atomvmlib_path, tag_dir)
+    Enum.each(pico_assets, fn asset ->
+      atomvmlib = find_matching_atomvmlib(asset["name"], pico_atomvmlib_assets)
+      create_combined_pico_asset(asset, atomvmlib, tag_dir)
+    end)
   end
 
-  defp download_atomvmlib_if_available([], _tag_dir), do: false
+  defp find_matching_atomvmlib(_firmware_name, [single_lib]) do
+    single_lib
+  end
 
-  defp download_atomvmlib_if_available([asset | _], tag_dir) do
+  defp find_matching_atomvmlib(firmware_name, atomvmlib_assets) do
+    board_key = pico_board_key(firmware_name)
+
+    Enum.find(atomvmlib_assets, fn lib ->
+      pico_board_key(lib["name"]) == board_key
+    end)
+  end
+
+  defp pico_board_key(name) do
+    cond do
+      String.contains?(name, "pico2_w") -> :pico2_w
+      String.contains?(name, "pico2") -> :pico2
+      String.contains?(name, "pico_w") -> :pico_w
+      true -> :pico
+    end
+  end
+
+  defp create_combined_pico_asset(_asset, nil, _tag_dir), do: :ok
+
+  defp create_combined_pico_asset(asset, atomvmlib, tag_dir) do
     asset_path = Path.join(tag_dir, asset["name"])
     download_asset(asset, asset_path)
-    asset_path
-  end
 
-  defp create_combined_pico_assets(_pico_assets, false, _tag_dir), do: :ok
-  defp create_combined_pico_assets([], _atomvmlib_path, _tag_dir), do: :ok
+    atomvmlib_path = Path.join(tag_dir, atomvmlib["name"])
+    download_asset(atomvmlib, atomvmlib_path)
 
-  defp create_combined_pico_assets(pico_assets, atomvmlib_path, tag_dir) do
-    Enum.each(pico_assets, fn asset ->
-      asset_path = Path.join(tag_dir, asset["name"])
-      download_asset(asset, asset_path)
-
-      combined_asset_path = Path.join(tag_dir, "combined_#{asset["name"]}")
-      :uf2tool.uf2join(combined_asset_path, [asset_path, atomvmlib_path])
-      IO.puts("Created combined UF2 at #{combined_asset_path}")
-    end)
+    combined_asset_path = Path.join(tag_dir, "combined_#{asset["name"]}")
+    :uf2tool.uf2join(combined_asset_path, [asset_path, atomvmlib_path])
+    IO.puts("Created combined UF2 at #{combined_asset_path}")
   end
 
   defp process_esp32_release(release) do

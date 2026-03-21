@@ -15,4 +15,22 @@
   >
     Flash Rpi Pico W
   </button>
+  {% if install_item.has_pico2 %}
+  <button
+    class="popupButton download-uf2-button"
+    data-board-type="Pico 2"
+    data-uf2-link="{{ site.baseurl }}/assets/release_binaries/{{ install_item.version }}/combined_AtomVM-pico2-{{ install_item.version }}.uf2"
+    style="padding: 8px 28px; font-size: 16px; font-weight: 700"
+  >
+    Flash Rpi Pico 2
+  </button>
+  <button
+    class="popupButton download-uf2-button"
+    data-board-type="Pico 2 W"
+    data-uf2-link="{{ site.baseurl }}/assets/release_binaries/{{ install_item.version }}/combined_AtomVM-pico2_w-{{ install_item.version }}.uf2"
+    style="padding: 8px 28px; font-size: 16px; font-weight: 700"
+  >
+    Flash Rpi Pico 2 W
+  </button>
+  {% endif %}
 </div>
