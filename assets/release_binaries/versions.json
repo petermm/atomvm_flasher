@@ -3,6 +3,25 @@
     {
       "has_elixir": true,
       "has_pico2": true,
+      "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.7.0-alpha.1",
+      "published_at": "2026-04-06T21:49:27Z",
+      "supported_boards": [
+        "ESP32",
+        "ESP32-C2",
+        "ESP32-C3",
+        "ESP32-C5",
+        "ESP32-C6",
+        "ESP32-C61",
+        "ESP32-H2",
+        "ESP32-P4",
+        "ESP32-S2",
+        "ESP32-S3"
+      ],
+      "version": "v0.7.0-alpha.1"
+    },
+    {
+      "has_elixir": true,
+      "has_pico2": true,
       "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.7.0-alpha.0",
       "published_at": "2026-03-20T13:04:05Z",
       "supported_boards": [

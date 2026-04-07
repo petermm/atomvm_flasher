@@ -1,0 +1,100 @@
+{
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        {
+          "offset": 4096,
+          "path": "AtomVM-esp32-v0.7.0-alpha.1.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C2",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "AtomVM-esp32c2-v0.7.0-alpha.1.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C3",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "AtomVM-esp32c3-v0.7.0-alpha.1.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C5",
+      "parts": [
+        {
+          "offset": 8192,
+          "path": "AtomVM-esp32c5-v0.7.0-alpha.1.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C6",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "AtomVM-esp32c6-v0.7.0-alpha.1.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C61",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "AtomVM-esp32c61-v0.7.0-alpha.1.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-H2",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "AtomVM-esp32h2-v0.7.0-alpha.1.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-P4",
+      "parts": [
+        {
+          "offset": 8192,
+          "path": "AtomVM-esp32p4-v0.7.0-alpha.1.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-S2",
+      "parts": [
+        {
+          "offset": 4096,
+          "path": "AtomVM-esp32s2-v0.7.0-alpha.1.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "AtomVM-esp32s3-v0.7.0-alpha.1.img"
+        }
+      ]
+    }
+  ],
+  "html_url": "https://github.com/atomvm/AtomVM/releases/tag/v0.7.0-alpha.1",
+  "name": "AtomVM",
+  "new_install_improv_wait_time": 0,
+  "new_install_prompt_erase": true,
+  "published_at": "2026-04-06T21:49:27Z",
+  "version": "v0.7.0-alpha.1"
+}
