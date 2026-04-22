@@ -28,11 +28,29 @@
       ]
     },
     {
+      "chipFamily": "ESP32-C5",
+      "parts": [
+        {
+          "offset": 8192,
+          "path": "atomvm-esp32c5.img"
+        }
+      ]
+    },
+    {
       "chipFamily": "ESP32-C6",
       "parts": [
         {
           "offset": 0,
           "path": "atomvm-esp32c6.img"
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C61",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "atomvm-esp32c61.img"
         }
       ]
     },
@@ -76,6 +94,6 @@
   "name": "AtomVM-esp32-mkimage",
   "new_install_improv_wait_time": 0,
   "new_install_prompt_erase": true,
-  "published_at": "2026-01-27T11:56:25Z",
-  "version": "6c084079630e274bf819bfd58c436f49b7d9525a"
+  "published_at": "2026-04-20T14:44:46Z",
+  "version": "90fc73d0e0f4e76be67a7dce342dcc21e5f2a099"
 }

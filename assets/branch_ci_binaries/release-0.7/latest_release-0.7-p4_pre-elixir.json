@@ -1,0 +1,18 @@
+{
+  "builds": [
+    {
+      "chipFamily": "ESP32-P4",
+      "parts": [
+        {
+          "offset": 8192,
+          "path": "atomvm-esp32p4_pre-elixir.img"
+        }
+      ]
+    }
+  ],
+  "name": "AtomVM-esp32p4_pre-elixir",
+  "new_install_improv_wait_time": 0,
+  "new_install_prompt_erase": true,
+  "published_at": "2026-04-20T14:44:46Z",
+  "version": "90fc73d0e0f4e76be67a7dce342dcc21e5f2a099"
+}
