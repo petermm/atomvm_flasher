@@ -3,6 +3,7 @@ email: webmaster@atomvm.net
 description: Download portal for AtomVM firmware images
 baseurl: ""
 url: ""
+featured_release_branch: release-0.7
 
 # Build settings
 theme: moonwalk

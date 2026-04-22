@@ -96,11 +96,13 @@ layout: default
     </div>
   </section>
 
-  <!-- ===== Release-0.6 Branch Builds ===== -->
+  <!-- ===== Featured Release Branch Builds ===== -->
+  {% assign branch_name = site.featured_release_branch %} {% assign branch_info =
+  site.data.branches[branch_name] %} {% assign base_filename = "latest_" |
+  append: branch_name %} {% if branch_info and branch_info.sha %}
   <section class="latest-release">
     <h2>
-      {% assign branch_name = "release-0.6" %} Release-0.6 Branch Builds {%
-      assign branch_info = site.data.branches[branch_name] %}
+      {{ branch_name | capitalize }} Branch Builds
     </h2>
 
     <span class="warning-callout">These builds may be unstable</span>
@@ -126,10 +128,10 @@ layout: default
           </div>
           <div class="install-section">
             <esp-web-install-button
-              manifest="{{ site.baseurl }}/assets/branch_ci_binaries/release-0.6/latest_release-0.6-elixir.json"
+              manifest="{{ site.baseurl }}/assets/branch_ci_binaries/{{ branch_name }}/{{ base_filename }}-elixir.json"
             >
               <button slot="activate">
-                Install Erlang &amp; Elixir AtomVM from release-0.6
+                Install Erlang &amp; Elixir AtomVM from {{ branch_name }}
               </button>
               <i slot="unsupported">
                 The Web Flasher is not available because your browser does not
@@ -139,10 +141,10 @@ layout: default
             </esp-web-install-button>
 
             <esp-web-install-button
-              manifest="{{ site.baseurl }}/assets/branch_ci_binaries/release-0.6/latest_release-0.6.json"
+              manifest="{{ site.baseurl }}/assets/branch_ci_binaries/{{ branch_name }}/{{ base_filename }}.json"
             >
               <button slot="activate">
-                Install Erlang AtomVM from release-0.6
+                Install Erlang AtomVM from {{ branch_name }}
               </button>
               <i slot="unsupported"></i>
             </esp-web-install-button>
@@ -153,6 +155,7 @@ layout: default
       </div>
     </div>
   </section>
+  {% endif %}
 
   <!-- ===== Tagged Releases ===== -->
   <section class="latest-release">
