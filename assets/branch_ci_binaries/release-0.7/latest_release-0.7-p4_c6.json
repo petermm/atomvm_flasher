@@ -13,6 +13,6 @@
   "name": "AtomVM-esp32p4_c6",
   "new_install_improv_wait_time": 0,
   "new_install_prompt_erase": true,
-  "published_at": "2026-06-11T16:23:17Z",
-  "version": "9c5d3b55007ee4dcd5c403102c58e8e61dc30e81"
+  "published_at": "2026-06-13T12:52:59Z",
+  "version": "fd8127f1f6fcbdb0d6cd0559fe067b1be99b388c"
 }
