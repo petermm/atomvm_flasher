@@ -15,8 +15,8 @@ main:
       suffix: p4_pre_c6
   pico_published_at: 2026-07-13T19:21:30Z
   pico_sha: 0220c78ee9e7cf6c763a278b44d81ce309fcf1ab
-  published_at: 2026-06-15T23:19:52Z
-  sha: efa90df6ac3c537df6e90d6a187777e661440740
+  published_at: 2026-07-13T20:57:45Z
+  sha: 0220c78ee9e7cf6c763a278b44d81ce309fcf1ab
   supported_boards:
     - ESP32
     - ESP32-C2
