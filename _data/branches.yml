@@ -13,8 +13,8 @@ main:
       has_erlang: true
       label: P4 Pre + C6
       suffix: p4_pre_c6
-  pico_published_at: 2026-07-13T19:21:30Z
-  pico_sha: 0220c78ee9e7cf6c763a278b44d81ce309fcf1ab
+  pico_published_at: 2026-09-23T18:04:38Z
+  pico_sha: ae55c2cc1b3430fc2376d5d63da43c666617588a
   published_at: 2026-07-13T20:57:45Z
   sha: 0220c78ee9e7cf6c763a278b44d81ce309fcf1ab
   supported_boards:
