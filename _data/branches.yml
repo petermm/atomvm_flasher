@@ -15,8 +15,8 @@ main:
       suffix: p4_pre_c6
   pico_published_at: 2026-09-23T18:04:38Z
   pico_sha: ae55c2cc1b3430fc2376d5d63da43c666617588a
-  published_at: 2026-07-13T20:57:45Z
-  sha: 0220c78ee9e7cf6c763a278b44d81ce309fcf1ab
+  published_at: 2026-05-14T13:07:36Z
+  sha: 5ce483a5878facbd4bf8cc3deb2dbdaa40170439
   supported_boards:
     - ESP32
     - ESP32-C2
@@ -42,8 +42,8 @@ release-0.7:
       has_erlang: true
       label: P4 Pre + C6
       suffix: p4_pre_c6
-  published_at: 2026-09-20T12:07:34Z
-  sha: d3edace848ebb90c24b620f79095c3ec98fa18ff
+  published_at: 2026-09-24T13:38:03Z
+  sha: 7fcc9f41d020a9e46938c24006e96060bcacaa5c
   supported_boards:
     - ESP32
     - ESP32-C2
