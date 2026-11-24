@@ -13,6 +13,6 @@
   "name": "AtomVM-esp32p4_pre-mkimage",
   "new_install_improv_wait_time": 0,
   "new_install_prompt_erase": true,
-  "published_at": "2026-11-21T10:38:09Z",
-  "version": "b54770b2adf36b18c2cdf9778874c7b9a8eb1b8b"
+  "published_at": "2026-11-23T14:48:51Z",
+  "version": "dd3d0ea930a25462e34b730a0ec7cc9b16092391"
 }
